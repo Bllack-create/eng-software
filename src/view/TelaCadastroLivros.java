@@ -53,6 +53,8 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações de cadastro"));
+
         jLabel1.setText("Autor:");
 
         jLabel2.setText("Nome:");
@@ -183,7 +185,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,17 +213,17 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
         // Ação ao clicar no botão cadastrar
 
-       if(txtNome.equals("")||txtAutor.equals("")||txtAssunto.equals("")||txtStatus.equals("")){
+      // if(txtNome.equals("")||txtAutor.equals("")||txtAssunto.equals("")||txtStatus.equals("")){
            
             DefaultTableModel dtmProduto = (DefaultTableModel)jtLivros.getModel();
            Object[] dados = {txtNome.getText(),txtAutor.getText(),txtAssunto.getText(),txtStatus.getText()};
            dtmProduto.addRow(dados);
            
-       }else{
+      // }else{
            
-          JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+      //    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
            
-       }
+      // }
         
  
     }//GEN-LAST:event_jbCadastrarActionPerformed
@@ -341,4 +345,5 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
+
 }
