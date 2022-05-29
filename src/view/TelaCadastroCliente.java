@@ -4,17 +4,25 @@
  */
 package view;
 
+import java.sql.*;
+import connection.ConnectionFactory;
+
 /**
  *
- * @author User
+ * @author Nilson
  */
 public class TelaCadastroCliente extends javax.swing.JFrame {
 
+    Connection conexao = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null; 
     /**
      * Creates new form TelaCadastroCliente
      */
     public TelaCadastroCliente() {
         initComponents();
+        conexao = ConnectionFactory.conector();
+        System.out.println(conexao);
     }
 
     /**
@@ -57,7 +65,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         }
 
         try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

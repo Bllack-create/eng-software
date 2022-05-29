@@ -4,16 +4,29 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import connection.ConnectionFactory;
+import model.bean.Livros;
+import model.dao.LivroDAO;
 
 /**
  *
  * @author User
  */
 public class TelaCadastroLivros extends javax.swing.JFrame {
-
+    //Intânciando as variaveis necessarias para manipular o banco de dados
+    Connection conexao = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    
+    //chamando a classe Livros
+    Livros livro = new Livros();
+    
     /**
      * Creates new form TelaCadastroProduto
      */
@@ -23,6 +36,8 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         //Ordenação da tabela
         DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
         jtLivros.setRowSorter(new TableRowSorter(modelo));
+       
+        
         
     }
 
@@ -213,6 +228,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
         // Ação ao clicar no botão cadastrar
 
+        /*
       // if(txtNome.equals("")||txtAutor.equals("")||txtAssunto.equals("")||txtStatus.equals("")){
            
             DefaultTableModel dtmProduto = (DefaultTableModel)jtLivros.getModel();
@@ -223,9 +239,19 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
            
       //    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
            
-      // }
+      // }  */
         
- 
+        //Metodo Create para o banco de dados
+        Livros livro = new Livros();
+        LivroDAO dao = new LivroDAO();
+        
+        livro.setNome(txtNome.getText());
+        livro.setAutor(txtAutor.getText());
+        livro.setAssunto(txtAssunto.getText());
+        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+        
+        dao.create(livro);
+        
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed

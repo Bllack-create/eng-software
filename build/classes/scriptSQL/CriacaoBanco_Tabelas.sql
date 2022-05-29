@@ -25,5 +25,5 @@ CREATE TABLE usuario (
     nomeCompleto VARCHAR(50) NOT NULL,
     cpf INT NOT NULL,
     nascimento DATE NOT NULL,
-    sexo CHAR UNSIGNED NOT NULL, 
+    sexo CHAR UNSIGNED NOT NULL
 );

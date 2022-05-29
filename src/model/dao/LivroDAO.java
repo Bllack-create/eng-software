@@ -4,30 +4,47 @@
  */
 package model.dao;
 
-import com.sun.jdi.connect.spi.Connection;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.DriverManager;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import model.bean.Livros;
 
 
 /**
  *
  * @author Nilson
  */
+//Classe responsánvel pela manipulação do banco de dados para a classe Livro
+//Aqui vai ficar o CRUD
 public class LivroDAO {
-    
-    public void create (){
-    
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
+       
+    public void create (Livros livro){
+          //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
         
-        //stmt = con.prepareStatement ("");
-              
+        String sql = ("INSERT INTO livros (nome,autor,assunto,status)VALUES(?,?,?,?)");
+        try{
+        
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, livro.getNome());
+            stmt.setString(2, livro.getAutor());
+            stmt.setString(3, livro.getAssunto());
+            stmt.setBoolean(4, Boolean.parseBoolean(livro.getStatus().toString()));
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso! ");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao salvar " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+        }
         
     }
     

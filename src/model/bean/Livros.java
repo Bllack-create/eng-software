@@ -6,7 +6,7 @@ package model.bean;
 
 /**
  *
- * @author Lenovo
+ * @author Nilson
  */
 public class Livros {
     
