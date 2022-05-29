@@ -27,7 +27,7 @@ CREATE TABLE usuario (
     nascimento DATE NOT NULL,
     sexo CHAR NOT NULL, 
     email VARCHAR(70) NOT NULL,
-	senha VARCHAR(64) NOT NULL,
-	celular INT UNSIGNED,
-	telefone INT UNSIGNED
+    senha VARCHAR(64) NOT NULL,
+    celular INT UNSIGNED,
+    telefone INT UNSIGNED
 );
