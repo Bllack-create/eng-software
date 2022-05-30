@@ -36,11 +36,28 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         //Ordenação da tabela
         DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
         jtLivros.setRowSorter(new TableRowSorter(modelo));
-       
         
-        
+        //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
+        readJtable();
+            
     }
 
+    public void readJtable(){
+        DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
+        modelo.setNumRows(0);
+        LivroDAO livroDAO = new LivroDAO();
+        
+        for(Livros livro: livroDAO.read()){
+            modelo.addRow(new Object[]{
+            livro.getId(),livro.getNome(),
+                livro.getAutor(),livro.getAssunto(),
+                    livro.getStatus()
+            });
+        
+        }
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -169,11 +186,11 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Autor", "Assunto", "Status"
+                "Id", "Nome", "Autor", "Assunto", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -251,6 +268,8 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
         
         dao.create(livro);
+        //Chamando a readJtable para quando realizar um create ja mostra os dados do banco
+        readJtable();
         
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
