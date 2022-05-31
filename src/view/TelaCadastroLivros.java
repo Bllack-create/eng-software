@@ -259,9 +259,16 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
       // }  */
         
         //Metodo Create para o banco de dados
-        Livros livro = new Livros();
         LivroDAO dao = new LivroDAO();
         
+        //Validação dos campos
+        if(txtNome.getText().isEmpty() || txtAutor.getText().isEmpty()||
+                txtAssunto.getText().isEmpty() || txtStatus.getText().isEmpty()){
+        
+        JOptionPane.showMessageDialog(null, "Preencha todos os campos! ");
+        
+        } else {
+        //Campos validados, logo será criado no banco de dados
         livro.setNome(txtNome.getText());
         livro.setAutor(txtAutor.getText());
         livro.setAssunto(txtAssunto.getText());
@@ -271,6 +278,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         //Chamando a readJtable para quando realizar um create ja mostra os dados do banco
         readJtable();
         
+        }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
