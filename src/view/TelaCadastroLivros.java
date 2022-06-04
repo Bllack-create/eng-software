@@ -284,7 +284,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         livro.setNome(txtNome.getText());
         livro.setAutor(txtAutor.getText());
         livro.setAssunto(txtAssunto.getText());
-        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+        //livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
         
         dao.create(livro);
         //Chamando a readJtable para quando realizar um create ja mostra os dados do banco
