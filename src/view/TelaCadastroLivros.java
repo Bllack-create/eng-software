@@ -19,46 +19,45 @@ import model.dao.LivroDAO;
  * @author User
  */
 public class TelaCadastroLivros extends javax.swing.JFrame {
-
     //Intânciando as variaveis necessarias para manipular o banco de dados
     Connection conexao = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-
+    
     //chamando a classe Livros
     Livros livro = new Livros();
-
+    
     /**
      * Creates new form TelaCadastroProduto
      */
     public TelaCadastroLivros() {
         initComponents();
-
+        
         //Ordenação da tabela
-        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
+        DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
         jtLivros.setRowSorter(new TableRowSorter(modelo));
-
+        
         //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
         readJtable();
-
+            
     }
 
-    public void readJtable() {
-        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
+    public void readJtable(){
+        DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
-
-        for (Livros livro : livroDAO.read()) {
+        
+        for(Livros livro: livroDAO.read()){
             modelo.addRow(new Object[]{
-                livro.getIdLivro(), livro.getNome(),
-                livro.getAutor(), livro.getAssunto(),
-                livro.getStatus()
+            livro.getId(),livro.getNome(),
+                livro.getAutor(),livro.getAssunto(),
+                    livro.getStatus()
             });
-
+        
         }
-
+    
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +79,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         jbAtualizar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLivros = new javax.swing.JTable();
@@ -88,9 +88,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações de cadastro"));
 
-        jLabel1.setText("Autor:");
+        jLabel1.setText("Autor: *");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome: *");
 
         jLabel3.setText("Assunto:");
 
@@ -117,23 +117,28 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
         jLabel5.setText("Status:");
 
+        txtStatus.setEditable(false);
+        txtStatus.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel4.setText("* Campos obrigatórios");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
-                                .addGap(235, 282, Short.MAX_VALUE))
+                                .addGap(235, 278, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,15 +151,14 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5))
-                                .addGap(0, 121, Short.MAX_VALUE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(50, 50, 50))
+                                .addGap(0, 117, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jbAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbCadastrar)))
+                        .addGap(64, 64, 64))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +189,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
@@ -210,9 +216,6 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             }
         });
         jtLivros.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtLivrosKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtLivrosKeyReleased(evt);
             }
@@ -267,141 +270,90 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
       //    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
            
       // }  */
+        
         //Metodo Create para o banco de dados
         LivroDAO dao = new LivroDAO();
-
+        
         //Validação dos campos
-        if (txtNome.getText().isEmpty() || txtAutor.getText().isEmpty()
-                || txtAssunto.getText().isEmpty() || txtStatus.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos! ");
-
+        if(txtNome.getText().isEmpty() || txtAutor.getText().isEmpty()){
+        
+        JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios! ");
+        
         } else {
-            //Campos validados, logo será criado no banco de dados
-            livro.setNome(txtNome.getText());
-            livro.setAutor(txtAutor.getText());
-            livro.setAssunto(txtAssunto.getText());
-            livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
-
-            dao.create(livro);
-
-            //Limpando os campos
-            txtNome.setText("");
-            txtAutor.setText("");
-            txtAssunto.setText("");
-            txtStatus.setText("");
-
-            //Chamando a readJtable para mostra os dados do banco
-            readJtable();
-
+        //Campos validados, logo será criado no banco de dados
+        livro.setNome(txtNome.getText());
+        livro.setAutor(txtAutor.getText());
+        livro.setAssunto(txtAssunto.getText());
+        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+        
+        dao.create(livro);
+        //Chamando a readJtable para quando realizar um create ja mostra os dados do banco
+        readJtable();
+        
         }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // Ação ao clicar no botão EXCLUIR
-
-        switch (JOptionPane.showConfirmDialog(null, "Deseja fazer a exclusão", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
-
-            case 0:
-                if (jtLivros.getSelectedRow() != -1) {
-                    LivroDAO dao = new LivroDAO();
-                    
-                    livro.setIdLivro(Integer.parseInt(jtLivros.getValueAt(jtLivros.getSelectedRow(), 0).toString()));
-
-                    dao.delete(livro);
-
-                    //Limpando os campos
-                    txtNome.setText("");
-                    txtAutor.setText("");
-                    txtAssunto.setText("");
-                    txtStatus.setText("");
-
-                    //Chamando a readJtable para mostra os dados do banco
-                    readJtable();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Selecione um livro primeiro!");
-                }
-
-                break;
-
-            case 1:
-                JOptionPane.showMessageDialog(null, "Nenhuma mudança foi feita!");
-                break;
-
-        }
+        
+        //System.out.println("Linha selecionada"+ jtLivros.getSelectedRow()); //para testar a função SelectedRow
+        
+        if(jtLivros.getSelectedRow()!= -1){
+        
+        DefaultTableModel dtmLivros = (DefaultTableModel)jtLivros.getModel();
+        dtmLivros.removeRow(jtLivros.getSelectedRow());
+    }else{
+       JOptionPane.showMessageDialog(null,"Selecione um livro para excluir");
+    }
+        
+        
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // Ação ao clicar no botão ATUALIZAR
-
-        switch (JOptionPane.showConfirmDialog(null, "Deseja fazer a atualização", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
-
-            case 0:
-                if (jtLivros.getSelectedRow() != -1) {
-                    LivroDAO dao = new LivroDAO();
-
-                    livro.setNome(txtNome.getText());
-                    livro.setAutor(txtAutor.getText());
-                    livro.setAssunto(txtAssunto.getText());
-                    livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
-                    livro.setIdLivro(Integer.parseInt(jtLivros.getValueAt(jtLivros.getSelectedRow(), 0).toString()));
-
-                    dao.update(livro);
-
-                    //Limpando os campos
-                    txtNome.setText("");
-                    txtAutor.setText("");
-                    txtAssunto.setText("");
-                    txtStatus.setText("");
-
-                    //Chamando a readJtable para mostra os dados do banco
-                    readJtable();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Selecione um livro primeiro!");
-                }
-
-                break;
-
-            case 1:
+       
+        switch(JOptionPane.showConfirmDialog(null, "Deseja fazer a atualização", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)){
+        
+        case 0:
+                 
+            if(jtLivros.getSelectedRow()!= -1){
+        
+            jtLivros.setValueAt(txtNome.getText(), jtLivros.getSelectedRow(), 0);
+            jtLivros.setValueAt(txtAutor.getText(), jtLivros.getSelectedRow(), 1);
+            jtLivros.setValueAt(txtAssunto.getText(), jtLivros.getSelectedRow(), 2);
+            jtLivros.setValueAt(txtStatus.getText(), jtLivros.getSelectedRow(), 3);
+            
+            }else{
+            JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
+            }
+          break;
+          
+        case 1:
                 JOptionPane.showMessageDialog(null, "Nenhuma mudança foi feita!");
-                break;
-
+                break;    
+        
         }
-
-
+       
+        
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
         // Ação de navegar sobre a tabela com as setas do teclado(Opcional)
-
-        if (jtLivros.getSelectedRow() != -1) {
-
-            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
-            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
-            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
-            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
-
+        
+          if(jtLivros.getSelectedRow()!= -1){
+        
+            jtLivros.setValueAt(txtNome.getText(), jtLivros.getSelectedRow(), 0);
+            jtLivros.setValueAt(txtAutor.getText(), jtLivros.getSelectedRow(), 1);
+            jtLivros.setValueAt(txtAssunto.getText(), jtLivros.getSelectedRow(), 2);
+            jtLivros.setValueAt(txtStatus.getText(), jtLivros.getSelectedRow(), 3);
+            
         }
-
+        
     }//GEN-LAST:event_jtLivrosKeyReleased
 
     private void jtLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtLivrosMouseClicked
-        // Ação de navegar sobre a tabela com o mouse
-
-        if (jtLivros.getSelectedRow() != -1) {
-
-            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
-            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
-            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
-            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
-
-        }
-
+   
     }//GEN-LAST:event_jtLivrosMouseClicked
-
-    private void jtLivrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtLivrosKeyPressed
 
     /**
      * @param args the command line arguments
@@ -436,7 +388,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroLivros().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
@@ -445,6 +397,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
