@@ -27,11 +27,11 @@
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonCadastrar" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jTextFieldEmail" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                   <Component id="jPasswordField" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                   <Component id="jButtonEntrar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="154" max="32767" attributes="0"/>
           </Group>

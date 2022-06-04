@@ -27,6 +27,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jlLogin = new javax.swing.JLabel();
+        jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -38,9 +40,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Entrar");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jlLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/icons8-login-80 .png"))); // NOI18N
+        jlLogin.setText("jLabel2");
+        jlLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlLoginMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 80));
+
+        jlBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
+        jlBackground.setText("jLabel1");
+        getContentPane().add(jlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 680));
 
         jMenuBar1.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -90,31 +108,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1144, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // Ação ao clicar no menu item Usuarios, Cadastrar:
-        new TelaLogin().setVisible(true);
+        //new TelaLogin().setVisible(true);
+        new TelaCadastroCliente().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // Ação ao clicar no menu item livros, Cadastrar:
         new TelaCadastroLivros().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jlLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLoginMouseClicked
+        // Ação ao clicar na imagem de login
+        new TelaLogin().setVisible(true);
+    }//GEN-LAST:event_jlLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,5 +173,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JLabel jlBackground;
+    private javax.swing.JLabel jlLogin;
     // End of variables declaration//GEN-END:variables
 }
