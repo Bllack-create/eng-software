@@ -10,18 +10,18 @@ package model.bean;
  */
 public class Livros {
     
-    private int id;
+    private int idLivro;
     private String nome;
     private String autor;
     private String assunto;
     private Boolean status;
 
-    public int getId() {
-        return id;
+    public int getIdLivro() {
+        return idLivro;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdLivro(int idLivro) {
+        this.idLivro = idLivro;
     }
 
     public String getNome() {
