@@ -111,5 +111,27 @@ public class LivroDAO {
         }
         
     }
+    public void delete (Livros livro){
+          //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+        
+        String sql = ("DELETE FROM livros WHERE idLivro = ?");
+        try{
+        
+            stmt = conexao.prepareStatement(sql);
+         
+            stmt.setInt(1, livro.getId());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso! ");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao excluir " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+        }
+        
+    }
     
 }

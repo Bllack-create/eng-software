@@ -304,9 +304,16 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
         //System.out.println("Linha selecionada"+ jtLivros.getSelectedRow()); //para testar a função SelectedRow
         if (jtLivros.getSelectedRow() != -1) {
+            //Metodo Create para o banco de dados
+            LivroDAO dao = new LivroDAO();
+            
+            livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
 
-            DefaultTableModel dtmLivros = (DefaultTableModel) jtLivros.getModel();
-            dtmLivros.removeRow(jtLivros.getSelectedRow());
+            dao.delete(livro);
+
+            //Chamando a readJtable para mostra os dados do banco
+            readJtable();
+
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um livro para excluir");
         }
@@ -326,37 +333,35 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
                     //Metodo Create para o banco de dados
                     LivroDAO dao = new LivroDAO();
 
-                    
-                        //Campos validados, logo será criado no banco de dados
-                        livro.setNome(txtNome.getText());
-                        livro.setAutor(txtAutor.getText());
-                        livro.setAssunto(txtAssunto.getText());
-                        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
-                        livro.setId((int)jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+                    //Campos validados, logo será criado no banco de dados
+                    livro.setNome(txtNome.getText());
+                    livro.setAutor(txtAutor.getText());
+                    livro.setAssunto(txtAssunto.getText());
+                    livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+                    livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
 
-                        dao.update(livro);
+                    dao.update(livro);
 
-                        //Limpar os campos após atualizar
-                        txtNome.setText("");
-                        txtAutor.setText("");
-                        txtAssunto.setText("");
+                    //Limpar os campos após atualizar
+                    txtNome.setText("");
+                    txtAutor.setText("");
+                    txtAssunto.setText("");
 
-                        //Chamando a readJtable para mostra os dados do banco
-                        readJtable();
+                    //Chamando a readJtable para mostra os dados do banco
+                    readJtable();
 
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
-                        }
-                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
+                }
+                break;
 
-                
-        case 1:
+            case 1:
                 JOptionPane.showMessageDialog(null, "Nenhuma mudança foi feita!");
-                break;    
-        
+                break;
+
         }
-       
-        
+
+
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
