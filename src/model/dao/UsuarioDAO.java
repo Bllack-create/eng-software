@@ -27,9 +27,9 @@ public class UsuarioDAO {
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cliente.getNomeCompleto());
             stmt.setString(2, cliente.getCpf().toString());
-            stmt.setString(3, "2000-01-01");
+            stmt.setString(3, cliente.getDataNascimento());
             stmt.setString(4, cliente.getSexo());
-            stmt.setString(5, "'" + cliente.getEmail() + "'");
+            stmt.setString(5, cliente.getEmail());
             stmt.setString(6, cliente.getSenha());
             
             stmt.executeUpdate();

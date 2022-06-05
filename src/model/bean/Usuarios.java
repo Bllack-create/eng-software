@@ -13,12 +13,12 @@ import java.util.Date;
 public class Usuarios {
     private String NomeCompleto;
     private String Cpf;
-    private Date DataNascimento;
+    private String DataNascimento;
     private String Sexo;
     private String Email;
     private String Senha;
 
-    public Usuarios(String NomeCompleto, String Cpf, Date DataNascimento, String Sexo, String Email, String Senha) {
+    public Usuarios(String NomeCompleto, String Cpf, String DataNascimento, String Sexo, String Email, String Senha) {
         this.NomeCompleto = NomeCompleto;
         this.Cpf = Cpf;
         this.DataNascimento = DataNascimento;
@@ -47,11 +47,11 @@ public class Usuarios {
         this.NomeCompleto = NomeCompleto;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return DataNascimento;
     }
 
-    public void setDataNascimento(Date DataNascimento) {
+    public void setDataNascimento(String DataNascimento) {
         this.DataNascimento = DataNascimento;
     }
 

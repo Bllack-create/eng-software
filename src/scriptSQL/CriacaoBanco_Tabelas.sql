@@ -6,8 +6,8 @@
  * Author:  esrae
  * Created: 21 de mai. de 2022
  */
-
-CREATE DATABASE Livraria;
+ 
+CREATE DATABASE livraria;
 
 USE Livraria;
 
@@ -27,5 +27,5 @@ CREATE TABLE usuario (
     nascimento DATE NOT NULL,
     sexo VARCHAR(15) NOT NULL, 
     email VARCHAR(70) NOT NULL,
-    senha VARCHAR(64) NOT NULL,
+    senha VARCHAR(64) NOT NULL
 );
