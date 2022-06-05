@@ -37,7 +37,7 @@ public class LivroDAO {
             stmt.setString(1, livro.getNome());
             stmt.setString(2, livro.getAutor());
             stmt.setString(3, livro.getAssunto());
-            //stmt.setBoolean(4, Boolean.parseBoolean(livro.getStatus().toString()));
+            stmt.setBoolean(4, Boolean.parseBoolean(livro.getStatus().toString()));
             
             stmt.executeUpdate();
             
