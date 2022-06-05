@@ -6,6 +6,10 @@ package view;
 
 import java.sql.*;
 import connection.ConnectionFactory;
+import static java.net.URI.create;
+import javax.swing.JOptionPane;
+import model.bean.Usuarios;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -19,10 +23,15 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroCliente
      */
+    
+    // cria um ojteto usuario
+    Usuarios usuario = new Usuarios();    
+        
     public TelaCadastroCliente() {
         initComponents();
         conexao = ConnectionFactory.conector();
         System.out.println(conexao);
+        
     }
 
     /**
@@ -192,6 +201,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         );
 
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,6 +240,25 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:
+        
+        if(txtNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios! ");
+        }
+        else{
+            UsuarioDAO dao = new UsuarioDAO();
+            
+            usuario.setNomeCompleto(txtNome.getText());
+            usuario.setCpf(txtCPF.getText());
+            usuario.setEmail(txtEmail.getText());
+            
+            dao.create(usuario);
+            
+            
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
 
     /**
      * @param args the command line arguments

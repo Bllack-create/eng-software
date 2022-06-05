@@ -23,9 +23,9 @@ CREATE TABLE livros (
 CREATE TABLE usuario (
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nomeCompleto VARCHAR(50) NOT NULL,
-    cpf INT NOT NULL,
+    cpf VARCHAR(15) NOT NULL,
     nascimento DATE NOT NULL,
-    sexo CHAR NOT NULL, 
+    sexo VARCHAR(15) NOT NULL, 
     email VARCHAR(70) NOT NULL,
     senha VARCHAR(64) NOT NULL,
 );
