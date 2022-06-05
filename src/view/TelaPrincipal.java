@@ -57,7 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jlLoginMouseClicked(evt);
             }
         });
-        getContentPane().add(jlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 80, 130));
+        getContentPane().add(jlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 120));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/Icone de busca.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, -1, -1));

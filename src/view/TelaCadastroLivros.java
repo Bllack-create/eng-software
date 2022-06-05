@@ -19,45 +19,46 @@ import model.dao.LivroDAO;
  * @author User
  */
 public class TelaCadastroLivros extends javax.swing.JFrame {
+
     //Intânciando as variaveis necessarias para manipular o banco de dados
     Connection conexao = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-    
+
     //chamando a classe Livros
     Livros livro = new Livros();
-    
+
     /**
      * Creates new form TelaCadastroProduto
      */
     public TelaCadastroLivros() {
         initComponents();
-        
+
         //Ordenação da tabela
-        DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         jtLivros.setRowSorter(new TableRowSorter(modelo));
-        
+
         //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
         readJtable();
-            
+
     }
 
-    public void readJtable(){
-        DefaultTableModel modelo = (DefaultTableModel)jtLivros.getModel();
+    public void readJtable() {
+        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
-        
-        for(Livros livro: livroDAO.read()){
+
+        for (Livros livro : livroDAO.read()) {
             modelo.addRow(new Object[]{
-            livro.getId(),livro.getNome(),
-                livro.getAutor(),livro.getAssunto(),
-                    livro.getStatus()
+                livro.getId(), livro.getNome(),
+                livro.getAutor(), livro.getAssunto(),
+                livro.getStatus()
             });
-        
+
         }
-    
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,64 +271,85 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
       //    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
            
       // }  */
-        
         //Metodo Create para o banco de dados
         LivroDAO dao = new LivroDAO();
-        
+
         //Validação dos campos
-        if(txtNome.getText().isEmpty() || txtAutor.getText().isEmpty()){
-        
-        JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios! ");
-        
+        if (txtNome.getText().isEmpty() || txtAutor.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios! ");
+
         } else {
-        //Campos validados, logo será criado no banco de dados
-        livro.setNome(txtNome.getText());
-        livro.setAutor(txtAutor.getText());
-        livro.setAssunto(txtAssunto.getText());
-        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
-        
-        dao.create(livro);
-        //Chamando a readJtable para quando realizar um create ja mostra os dados do banco
-        readJtable();
-        
+            //Campos validados, logo será criado no banco de dados
+            livro.setNome(txtNome.getText());
+            livro.setAutor(txtAutor.getText());
+            livro.setAssunto(txtAssunto.getText());
+            livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+
+            dao.create(livro);
+
+            //Limpar os campos após o cadastro
+            txtNome.setText("");
+            txtAutor.setText("");
+            txtAssunto.setText("");
+
+            //Chamando a readJtable para mostra os dados do banco
+            readJtable();
+
         }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // Ação ao clicar no botão EXCLUIR
-        
+
         //System.out.println("Linha selecionada"+ jtLivros.getSelectedRow()); //para testar a função SelectedRow
-        
-        if(jtLivros.getSelectedRow()!= -1){
-        
-        DefaultTableModel dtmLivros = (DefaultTableModel)jtLivros.getModel();
-        dtmLivros.removeRow(jtLivros.getSelectedRow());
-    }else{
-       JOptionPane.showMessageDialog(null,"Selecione um livro para excluir");
-    }
-        
-        
+        if (jtLivros.getSelectedRow() != -1) {
+
+            DefaultTableModel dtmLivros = (DefaultTableModel) jtLivros.getModel();
+            dtmLivros.removeRow(jtLivros.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um livro para excluir");
+        }
+
+
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // Ação ao clicar no botão ATUALIZAR
-       
-        switch(JOptionPane.showConfirmDialog(null, "Deseja fazer a atualização", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)){
-        
-        case 0:
-                 
-            if(jtLivros.getSelectedRow()!= -1){
-        
-            jtLivros.setValueAt(txtNome.getText(), jtLivros.getSelectedRow(), 0);
-            jtLivros.setValueAt(txtAutor.getText(), jtLivros.getSelectedRow(), 1);
-            jtLivros.setValueAt(txtAssunto.getText(), jtLivros.getSelectedRow(), 2);
-            jtLivros.setValueAt(txtStatus.getText(), jtLivros.getSelectedRow(), 3);
-            
-            }else{
-            JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
-            }
-          break;
-          
+
+        switch (JOptionPane.showConfirmDialog(null, "Deseja fazer a atualização", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
+
+            case 0:
+
+                if (jtLivros.getSelectedRow() != -1) {
+
+                    //Metodo Create para o banco de dados
+                    LivroDAO dao = new LivroDAO();
+
+                    
+                        //Campos validados, logo será criado no banco de dados
+                        livro.setNome(txtNome.getText());
+                        livro.setAutor(txtAutor.getText());
+                        livro.setAssunto(txtAssunto.getText());
+                        livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+                        livro.setId((int)jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+
+                        dao.update(livro);
+
+                        //Limpar os campos após atualizar
+                        txtNome.setText("");
+                        txtAutor.setText("");
+                        txtAssunto.setText("");
+
+                        //Chamando a readJtable para mostra os dados do banco
+                        readJtable();
+
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
+                        }
+                    break;
+
+                
         case 1:
                 JOptionPane.showMessageDialog(null, "Nenhuma mudança foi feita!");
                 break;    
@@ -339,20 +361,25 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
         // Ação de navegar sobre a tabela com as setas do teclado(Opcional)
-        
-          if(jtLivros.getSelectedRow()!= -1){
-        
-            jtLivros.setValueAt(txtNome.getText(), jtLivros.getSelectedRow(), 0);
-            jtLivros.setValueAt(txtAutor.getText(), jtLivros.getSelectedRow(), 1);
-            jtLivros.setValueAt(txtAssunto.getText(), jtLivros.getSelectedRow(), 2);
-            jtLivros.setValueAt(txtStatus.getText(), jtLivros.getSelectedRow(), 3);
-            
+
+        if (jtLivros.getSelectedRow() != -1) {
+
+            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
+            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
+            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
         }
-        
+
     }//GEN-LAST:event_jtLivrosKeyReleased
 
     private void jtLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtLivrosMouseClicked
-   
+        // Ação de click na tabela para setar os valores nos campos
+        if (jtLivros.getSelectedRow() != -1) {
+
+            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
+            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
+            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
+        }
+
     }//GEN-LAST:event_jtLivrosMouseClicked
 
     /**

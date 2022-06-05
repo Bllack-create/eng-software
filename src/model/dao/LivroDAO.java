@@ -86,4 +86,30 @@ public class LivroDAO {
         return livros;
     }
     
+     public void update (Livros livro){
+          //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+        
+        String sql = ("UPDATE livros SET nome = ?, autor = ?, assunto = ?, status = ? WHERE idLivro = ?");
+        try{
+        
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, livro.getNome());
+            stmt.setString(2, livro.getAutor());
+            stmt.setString(3, livro.getAssunto());
+            stmt.setBoolean(4, Boolean.parseBoolean(livro.getStatus().toString()));
+            stmt.setInt(5, livro.getId());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso! ");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+        }
+        
+    }
+    
 }
