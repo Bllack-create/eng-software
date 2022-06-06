@@ -4,6 +4,11 @@
  */
 package view;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import model.bean.Usuarios;
+import model.dao.UsuarioDAO;
+
 /**
  *
  * @author esrae
@@ -46,6 +51,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonEntrar.setBackground(new java.awt.Color(102, 102, 255));
         jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEntrar.setText("Entrar");
+        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrarActionPerformed(evt);
+            }
+        });
 
         jButtonCadastrar.setText("Cadastrar-se");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +108,24 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaCadastroCliente().setVisible(true);
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
+        // TODO add your handling code here:
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuarios usuario = dao.buscaUsuarioPorEmail(jTextFieldEmail.getText());
+        
+        // Usuario não cadastrado
+        if(usuario.getEmail().equals("null")){
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+        } // senha incorreta   
+        else if(usuario.getEmail().equals(jTextFieldEmail.getText()) && !usuario.getSenha().equals(Arrays.toString(jPasswordField.getPassword()))){
+            JOptionPane.showMessageDialog(null, "Senha Incorreta!");
+            jPasswordField.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Ok falta implementar o restante!");
+        }
+    }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     /**
      * @param args the command line arguments

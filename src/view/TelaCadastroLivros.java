@@ -85,8 +85,6 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLivros = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações de cadastro"));
 
         jLabel1.setText("Autor: *");

@@ -7,6 +7,7 @@ package model.dao;
 import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import model.bean.Usuarios;
 
@@ -41,5 +42,40 @@ public class UsuarioDAO {
                ConnectionFactory.closeConnection(conexao, stmt);
         }
         
+    }
+    
+    public Usuarios buscaUsuarioPorEmail(String email){
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Usuarios usuario = new Usuarios();
+        // colocando null para caso não tenha nenhum 
+        usuario.setEmail("null");
+        
+        try{
+            stmt = conexao.prepareStatement("SELECT * FROM usuario where email = ?");
+            
+            stmt.setString(1, email);
+            
+            rs = stmt.executeQuery();
+      
+            while(rs.next()){
+                
+                usuario.setNomeCompleto(rs.getString("nomeCompleto"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setDataNascimento(rs.getString("nascimento"));
+                usuario.setSexo(rs.getString("sexo"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
+            }
+  
+        }catch(Exception e ){
+            System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt, rs);
+        }
+        return usuario;
     }
 }
