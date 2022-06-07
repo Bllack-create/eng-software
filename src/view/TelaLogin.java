@@ -37,6 +37,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jButtonEntrar = new javax.swing.JButton();
         jButtonCadastrar = new javax.swing.JButton();
+        jButtonRecuperarSenha = new javax.swing.JButton();
 
         jLabel1.setText("Email:");
 
@@ -64,6 +65,16 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jButtonRecuperarSenha.setForeground(new java.awt.Color(102, 204, 255));
+        jButtonRecuperarSenha.setText("Recuperar senha");
+        jButtonRecuperarSenha.setBorder(null);
+        jButtonRecuperarSenha.setBorderPainted(false);
+        jButtonRecuperarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRecuperarSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,6 +82,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonRecuperarSenha)
                     .addComponent(jButtonCadastrar)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,9 +102,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
+                .addComponent(jButtonRecuperarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonCadastrar)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -126,6 +140,11 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ok falta implementar o restante!");
         }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
+
+    private void jButtonRecuperarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuperarSenhaActionPerformed
+        // TODO add your handling code here:
+        new TelaRecuperaçãoSenha().setVisible(true);
+    }//GEN-LAST:event_jButtonRecuperarSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +184,7 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JButton jButtonRecuperarSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField;
