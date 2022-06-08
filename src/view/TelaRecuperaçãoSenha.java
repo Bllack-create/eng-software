@@ -4,6 +4,11 @@
  */
 package view;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import model.bean.Usuarios;
+import model.dao.UsuarioDAO;
+
 /**
  *
  * @author esrae
@@ -43,6 +48,11 @@ public class TelaRecuperaçãoSenha extends javax.swing.JFrame {
         jButtonSalvar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("SALVAR");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Email:");
 
@@ -105,6 +115,31 @@ public class TelaRecuperaçãoSenha extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuarios usuario = dao.buscaUsuarioPorEmaileCPF(txtEmail.getText(), txtCPF.getText());
+        
+        if(txtEmail.getText().isEmpty() || txtCPF.getText().isEmpty() || jPasswordNovaSenha.getPassword().length == 0 || 
+                jPasswordConfNovaSenha.getPassword().length == 0){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
+        else if("null".equals(usuario.getEmail()) && "null".equals(usuario.getCpf())){
+            JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
+        }
+        else if(Arrays.toString(jPasswordNovaSenha.getPassword()) == null ? Arrays.toString(jPasswordConfNovaSenha.getPassword()) != null : !Arrays.toString(jPasswordNovaSenha.getPassword()).equals(Arrays.toString(jPasswordConfNovaSenha.getPassword()))){
+            JOptionPane.showMessageDialog(null, "As senhas não são iguais!");
+        }
+        else{
+            usuario.setSenha(Arrays.toString(jPasswordNovaSenha.getPassword()));
+            
+            // altera no banco
+            dao.updateSenha(usuario);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments

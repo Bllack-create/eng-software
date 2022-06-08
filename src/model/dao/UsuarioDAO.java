@@ -27,7 +27,7 @@ public class UsuarioDAO {
         
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cliente.getNomeCompleto());
-            stmt.setString(2, cliente.getCpf().toString());
+            stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getDataNascimento());
             stmt.setString(4, cliente.getSexo());
             stmt.setString(5, cliente.getEmail());
@@ -77,5 +77,65 @@ public class UsuarioDAO {
             ConnectionFactory.closeConnection(conexao, stmt, rs);
         }
         return usuario;
+    }
+    
+    public Usuarios buscaUsuarioPorEmaileCPF(String email, String cpf){
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Usuarios usuario = new Usuarios();
+        // colocando null para caso não tenha nenhum 
+        usuario.setEmail("null");
+        usuario.setCpf("null");
+        
+        try{
+            stmt = conexao.prepareStatement("SELECT * FROM usuario where email = ? AND cpf = ?");
+            
+            stmt.setString(1, email);
+            stmt.setString(2, cpf);
+            
+            rs = stmt.executeQuery();
+      
+            while(rs.next()){
+                
+                usuario.setNomeCompleto(rs.getString("nomeCompleto"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setDataNascimento(rs.getString("nascimento"));
+                usuario.setSexo(rs.getString("sexo"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
+            }
+  
+        }catch(Exception e ){
+            System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt, rs);
+        }
+        return usuario;
+    }
+    
+    public void updateSenha(Usuarios usuario){
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+        
+        try{
+            stmt = conexao.prepareStatement("UPDATE usuario SET senha = ? where cpf = ? AND email = ?");
+            
+            stmt.setString(1, usuario.getSenha());
+            stmt.setString(2, usuario.getCpf());
+            stmt.setString(3, usuario.getEmail());
+            
+            // executa o sql
+            stmt.execute();
+            stmt.close();
+            JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+        }catch(Exception e ){
+            System.out.println("Falha na alteração de senha "+ e);
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt);
+        }
     }
 }
