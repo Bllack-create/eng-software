@@ -134,4 +134,43 @@ public class LivroDAO {
         
     }
     
+    public List<Livros> buscaLivros(String strBusca){
+        
+       //Conexão ao banco de dados 
+       Connection conexao = ConnectionFactory.conector();
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       List<Livros> livros = new ArrayList<>();
+          
+      try{
+      stmt = conexao.prepareStatement("SELECT * FROM Livros where (nome LIKE %?% OR autor LIKE %?% OR assunto LIKE %?%) AND status = TRUE ORDER BY nome");
+      stmt.setString(1, strBusca);
+      stmt.setString(2, strBusca);
+      stmt.setString(3, strBusca);
+      
+      rs = stmt.executeQuery();
+      
+      while(rs.next()){
+      
+          Livros livro = new Livros();
+          
+          livro.setId(rs.getInt("idLivro"));
+          livro.setNome(rs.getString("nome"));
+          livro.setAutor(rs.getString("autor"));
+          livro.setAssunto(rs.getString("assunto"));
+          livro.setStatus(rs.getBoolean("status"));
+          
+          //Adicionando os valores vindos do banco dentro de uma lista
+          //para que possa ser feito a leitura dos valores.
+          livros.add(livro);
+      }
+  
+      }catch(Exception e ){
+          System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
+      }finally{
+          ConnectionFactory.closeConnection(conexao, stmt, rs);
+      }
+        return livros;
+    }
 }

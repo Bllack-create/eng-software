@@ -29,7 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jlLogin = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBusca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -61,7 +61,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/Icone de busca.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 450, 40));
+
+        txtBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 450, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,6 +145,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new TelaLogin().setVisible(true);
     }//GEN-LAST:event_jlLoginMouseClicked
 
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,8 +197,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jlBackground;
     private javax.swing.JLabel jlLogin;
+    private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }

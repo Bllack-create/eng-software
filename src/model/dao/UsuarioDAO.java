@@ -5,9 +5,11 @@
 package model.dao;
 
 import connection.ConnectionFactory;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.bean.Usuarios;
 
@@ -36,7 +38,7 @@ public class UsuarioDAO {
             stmt.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Salvo com sucesso! ");
-        }catch (Exception e){
+        }catch (HeadlessException | SQLException e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar " + e);
         }finally{
                ConnectionFactory.closeConnection(conexao, stmt);
@@ -71,7 +73,7 @@ public class UsuarioDAO {
                 usuario.setSenha(rs.getString("senha"));
             }
   
-        }catch(Exception e ){
+        }catch(SQLException e ){
             System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
         }finally{
             ConnectionFactory.closeConnection(conexao, stmt, rs);
@@ -108,7 +110,7 @@ public class UsuarioDAO {
                 usuario.setSenha(rs.getString("senha"));
             }
   
-        }catch(Exception e ){
+        }catch(SQLException e ){
             System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
         }finally{
             ConnectionFactory.closeConnection(conexao, stmt, rs);
@@ -132,7 +134,7 @@ public class UsuarioDAO {
             stmt.execute();
             stmt.close();
             JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-        }catch(Exception e ){
+        }catch(HeadlessException | SQLException e ){
             System.out.println("Falha na alteração de senha "+ e);
         }finally{
             ConnectionFactory.closeConnection(conexao, stmt);
