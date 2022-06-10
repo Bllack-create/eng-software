@@ -144,10 +144,10 @@ public class LivroDAO {
        List<Livros> livros = new ArrayList<>();
           
       try{
-      stmt = conexao.prepareStatement("SELECT * FROM Livros where (nome LIKE %?% OR autor LIKE %?% OR assunto LIKE %?%) AND status = TRUE ORDER BY nome");
-      stmt.setString(1, strBusca);
-      stmt.setString(2, strBusca);
-      stmt.setString(3, strBusca);
+      stmt = conexao.prepareStatement("SELECT * FROM Livros where (nome LIKE ? OR autor LIKE ? OR assunto LIKE ?) AND status = TRUE");
+      stmt.setString(1, "%"+strBusca+"%");
+      stmt.setString(2, "%"+strBusca+"%");
+      stmt.setString(3, "%"+strBusca+"%");
       
       rs = stmt.executeQuery();
       

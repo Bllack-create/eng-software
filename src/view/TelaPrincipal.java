@@ -190,7 +190,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaLogin().setVisible(true);
+                //new TelaPrincipal().setVisible(true);
             }
         });
     }
