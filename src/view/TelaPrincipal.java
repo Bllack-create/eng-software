@@ -60,6 +60,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 120));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/Icone de busca.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, -1, -1));
 
         txtBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +89,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Usuarios");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/user_add.png"))); // NOI18N
-        jMenuItem1.setText("Entrar");
+        jMenuItem1.setText("Cadastrar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -148,6 +153,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        new TelaBuscar().setVisible(true);
+
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

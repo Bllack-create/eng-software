@@ -232,6 +232,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             
             dao.create(usuario);
             
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            
             this.dispose();
         }
     }//GEN-LAST:event_jbSalvarActionPerformed

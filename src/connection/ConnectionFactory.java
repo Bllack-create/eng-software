@@ -33,7 +33,7 @@ public class ConnectionFactory {
             conexao = DriverManager.getConnection(URL, USER, PASS);
             return conexao;
         } catch (Exception e) {
-            System.out.println("Errro ao conectar "+ e.getMessage());
+            System.out.println("Erro ao conectar "+ e.getMessage());
             return null;
         }
     
