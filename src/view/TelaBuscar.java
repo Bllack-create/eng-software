@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import java.util.List;
 import model.bean.Livros;
 import model.dao.LivroDAO;
 
@@ -31,13 +32,15 @@ public class TelaBuscar extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroProduto
      */
-    public TelaBuscar() {
+    public TelaBuscar(String strBusca) {
         initComponents();
 
         //Ordenação da tabela
         DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         jtLivros.setRowSorter(new TableRowSorter(modelo));
-
+        
+        // pega a string de busca da tela inicial
+        txtBusca.setText(strBusca);
         //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
         readJtable();
 
@@ -47,16 +50,21 @@ public class TelaBuscar extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
-
-        for (Livros livro : livroDAO.buscaLivros(txtBusca.getText())) {
-            modelo.addRow(new Object[]{
+        
+        List<Livros> resultados = livroDAO.buscaLivros(txtBusca.getText());
+        if(!resultados.isEmpty()){
+            for (Livros livro : resultados) {
+                modelo.addRow(new Object[]{
                 livro.getId(), livro.getNome(),
                 livro.getAutor(), livro.getAssunto(),
                 livro.getStatus()
-            });
+                });
 
+            }
         }
-
+        else{
+            JOptionPane.showMessageDialog(null, "NENHUM RESULTADO ENCONTRADO!\nVerifique a string de busca e tente novamente.");
+        }
     }
 
     /**
@@ -72,8 +80,6 @@ public class TelaBuscar extends javax.swing.JFrame {
         jtLivros = new javax.swing.JTable();
         txtBusca = new javax.swing.JTextField();
         jButtonBuscar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +108,12 @@ public class TelaBuscar extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtLivros);
+
+        txtBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/icons8-search-24.png"))); // NOI18N
@@ -152,6 +164,10 @@ public class TelaBuscar extends javax.swing.JFrame {
         readJtable();
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -189,7 +205,7 @@ public class TelaBuscar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaBuscar().setVisible(true);
+                new TelaBuscar("").setVisible(true);
             }
         });
     }

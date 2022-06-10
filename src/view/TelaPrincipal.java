@@ -9,7 +9,6 @@ package view;
  * @author User
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
     /**
      * Creates new form TelaPrincipal
      */
@@ -156,7 +155,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        new TelaBuscar().setVisible(true);
+        new TelaBuscar(txtBusca.getText()).setVisible(true);
 
     }//GEN-LAST:event_jLabel2MouseClicked
 

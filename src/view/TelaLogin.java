@@ -137,7 +137,8 @@ public class TelaLogin extends javax.swing.JFrame {
             jPasswordField.setText("");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Ok falta implementar o restante!");
+            new TelaPrincipal().setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 

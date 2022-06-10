@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import static java.lang.Boolean.TRUE;
 import model.bean.Livros;
 import model.dao.LivroDAO;
 
@@ -282,7 +283,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             livro.setNome(txtNome.getText());
             livro.setAutor(txtAutor.getText());
             livro.setAssunto(txtAssunto.getText());
-            livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+            livro.setStatus(TRUE);
 
             dao.create(livro);
 
@@ -308,6 +309,11 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
 
             dao.delete(livro);
+            
+            txtNome.setText("");
+            txtAssunto.setText("");
+            txtAutor.setText("");
+            txtStatus.setText("");
 
             //Chamando a readJtable para mostra os dados do banco
             readJtable();
@@ -370,6 +376,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
             txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
             txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
+            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
         }
 
     }//GEN-LAST:event_jtLivrosKeyReleased
@@ -418,7 +425,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }
