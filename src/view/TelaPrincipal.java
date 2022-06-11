@@ -4,6 +4,17 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import connection.ConnectionFactory;
+import static java.lang.Boolean.TRUE;
+import model.bean.Livros;
+import model.dao.LivroDAO;
+
 /**
  *
  * @author User
@@ -14,6 +25,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        
+         //Ordenação da tabela
+        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
+        jtLivros.setRowSorter(new TableRowSorter(modelo));
+
+        //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
+        readJtable();
+
+    }
+    
+        public void readJtable() {
+        //metodo para fazer a leitura da tabela
+        
+        DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
+        modelo.setNumRows(0);
+        LivroDAO livroDAO = new LivroDAO();
+
+        for (Livros livro : livroDAO.read()) {
+            modelo.addRow(new Object[]{
+                livro.getId(), livro.getNome(),
+                livro.getAutor(), livro.getAssunto(),
+                livro.getStatus()
+            });
+
+        }
+
     }
 
     /**
@@ -30,6 +67,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtLivros = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -64,19 +105,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 250, -1, -1));
 
         txtBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 450, 40));
+        getContentPane().add(txtBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 450, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Faça uma busca");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, -1, -1));
+
+        jtLivros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nome", "Autor", "Assunto", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jtLivros);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 250));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("(Pesquise livros que estejam disponiveis)");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Livros indisponiveis para emprestimo");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, 20));
 
         jlBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
         jlBackground.setText("jLabel1");
@@ -199,6 +272,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -208,8 +283,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlBackground;
     private javax.swing.JLabel jlLogin;
+    private javax.swing.JTable jtLivros;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
