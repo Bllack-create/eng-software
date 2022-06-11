@@ -43,11 +43,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         LivroDAO livroDAO = new LivroDAO();
 
         for (Livros livro : livroDAO.read()) {
+            if(livro.getStatus()!= TRUE){
             modelo.addRow(new Object[]{
                 livro.getId(), livro.getNome(),
                 livro.getAutor(), livro.getAssunto(),
                 livro.getStatus()
-            });
+            });}
 
         }
 
