@@ -81,6 +81,7 @@ public class TelaBuscar extends javax.swing.JFrame {
         jtLivros = new javax.swing.JTable();
         txtBusca = new javax.swing.JTextField();
         jButtonBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,6 +126,9 @@ public class TelaBuscar extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/carrinho-de-compras-carregado-24.png"))); // NOI18N
+        jButton1.setText("Carrinho");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,9 +136,12 @@ public class TelaBuscar extends javax.swing.JFrame {
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(165, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtBusca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscar)))
                 .addGap(155, 155, 155))
         );
         layout.setVerticalGroup(
@@ -143,9 +150,11 @@ public class TelaBuscar extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +221,7 @@ public class TelaBuscar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtLivros;

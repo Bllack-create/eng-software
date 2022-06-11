@@ -45,6 +45,8 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     }
 
     public void readJtable() {
+        //metodo para fazer a leitura da tabela
+        
         DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
@@ -257,19 +259,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
         // Ação ao clicar no botão cadastrar
-
-        /*
-      // if(txtNome.equals("")||txtAutor.equals("")||txtAssunto.equals("")||txtStatus.equals("")){
-           
-            DefaultTableModel dtmProduto = (DefaultTableModel)jtLivros.getModel();
-           Object[] dados = {txtNome.getText(),txtAutor.getText(),txtAssunto.getText(),txtStatus.getText()};
-           dtmProduto.addRow(dados);
-           
-      // }else{
-           
-      //    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-           
-      // }  */
+        
         //Metodo Create para o banco de dados
         LivroDAO dao = new LivroDAO();
 
