@@ -30,7 +30,7 @@ public class TelaBuscar extends javax.swing.JFrame {
     Livros livro = new Livros();
 
     /**
-     * Creates new form TelaCadastroProduto
+     * Creates new form TelaBuscar
      */
     public TelaBuscar(String strBusca) {
         initComponents();
@@ -41,6 +41,7 @@ public class TelaBuscar extends javax.swing.JFrame {
         
         // pega a string de busca da tela inicial
         txtBusca.setText(strBusca);
+        
         //Chamando a readJtable para assim que abrir a pagina ja fazer a leitura dos dados
         readJtable();
 

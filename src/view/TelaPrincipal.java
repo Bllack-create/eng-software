@@ -154,7 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscaActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+        // Ação ao clicar na lupa do campo de busca
         new TelaBuscar(txtBusca.getText()).setVisible(true);
 
     }//GEN-LAST:event_jLabel2MouseClicked

@@ -30,7 +30,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
     Livros livro = new Livros();
 
     /**
-     * Creates new form TelaCadastroProduto
+     * Creates new form TelaCadastroLivros
      */
     public TelaCadastroLivros() {
         initComponents();
@@ -388,6 +388,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
             txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
             txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
+            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
         }
 
     }//GEN-LAST:event_jtLivrosMouseClicked
