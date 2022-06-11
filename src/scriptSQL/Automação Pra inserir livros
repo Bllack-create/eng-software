@@ -1,0 +1,28 @@
+// pode executar nesse site https://www.onlinegdb.com/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    srand(time(NULL));
+    int t = 10; // qtd livros gerados;
+    while(t--){
+        cout << "INSERT INTO livros (nome, autor, assunto, status, cpfUserEmp) VALUES (";
+        int n = rand() % 10 + 1;
+        string s = "";
+        while(n--) s.push_back('a' + rand() % 26);
+        cout << "\'" <<  s  << "\'" << ", ";
+        n = rand() % 10 + 1;
+        s = "";
+        while(n--) s.push_back('a' + rand() % 26);
+        cout << "\'" <<  s  << "\'" << ", ";
+        n = rand() % 10 + 1;
+        s = "";
+        while(n--) s.push_back('a' + rand() % 26);
+        cout << "\'" <<  s  << "\'" << ", ";
+        cout << "true, \"\");\n";
+        
+    }
+    return 0;
+}
