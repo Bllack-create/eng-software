@@ -284,6 +284,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame {
             livro.setAutor(txtAutor.getText());
             livro.setAssunto(txtAssunto.getText());
             livro.setStatus(TRUE);
+            livro.setCpfUserEmp("");
 
             dao.create(livro);
 

@@ -15,6 +15,7 @@ public class Livros {
     private String autor;
     private String assunto;
     private Boolean status;
+    private String cpfUserEmp;
 
     public int getId() {
         return id;
@@ -56,5 +57,12 @@ public class Livros {
         this.status = status;
     }
     
+    public String getCpfUserEmp() {
+        return cpfUserEmp;
+    }
+
+    public void setCpfUserEmp(String cpfUserEmp) {
+        this.cpfUserEmp = cpfUserEmp;
+    }
     
 }
