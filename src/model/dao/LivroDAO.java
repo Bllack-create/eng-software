@@ -86,6 +86,42 @@ public class LivroDAO {
         return livros;
     }
     
+    public List<Livros> readIndisponivel(){
+        
+       //Conexão ao banco de dados 
+       Connection conexao = ConnectionFactory.conector();
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       List<Livros> livros = new ArrayList<>();
+          
+      try{
+      stmt = conexao.prepareStatement("SELECT * FROM Livros where status = FALSE");
+      rs = stmt.executeQuery();
+      
+      while(rs.next()){
+      
+          Livros livro = new Livros();
+          
+          livro.setId(rs.getInt("idLivro"));
+          livro.setNome(rs.getString("nome"));
+          livro.setAutor(rs.getString("autor"));
+          livro.setAssunto(rs.getString("assunto"));
+          livro.setStatus(rs.getBoolean("status"));
+          
+          //Adicionando os valores vindos do banco dentro de uma lista
+          //para que possa ser feito a leitura dos valores.
+          livros.add(livro);
+      }
+  
+      }catch(Exception e ){
+          System.out.println("Não foi possivel fazer a leitura dos dados "+ e);
+      }finally{
+          ConnectionFactory.closeConnection(conexao, stmt, rs);
+      }
+        return livros;
+    }
+    
      public void update (Livros livro){
           //Conexão ao banco de dados 
           Connection conexao = ConnectionFactory.conector();
@@ -133,6 +169,7 @@ public class LivroDAO {
         }
         
     }
+    
     
     public List<Livros> buscaLivros(String strBusca){
         
