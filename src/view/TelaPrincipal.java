@@ -41,13 +41,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
-
-        for (Livros livro : livroDAO.readIndisponivel()) {
+        
+        for (Livros livro : livroDAO.read()) {
+            if(livro.getStatus()!= TRUE){
             modelo.addRow(new Object[]{
                 livro.getId(), livro.getNome(),
                 livro.getAutor(), livro.getAssunto(),
                 livro.getStatus()
-            });
+            });}
 
         }
 
