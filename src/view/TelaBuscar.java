@@ -338,17 +338,19 @@ public class TelaBuscar extends javax.swing.JFrame {
             livro.setStatus(TRUE);
             
             // adiciona na cesta
-            cesta.add(livro);
+                if(findLivroCesta(livro) == false){
+                    cesta.add(livro);
             
-            // limpa os campos
-            txtNome.setText("");
-            txtAutor.setText("");
-            txtAssunto.setText("");
-            txtStatus.setText("");
-            String tam = String.format("%d", cesta.size());
-            txtQuantidade.setText(tam);
+                    // limpa os campos
+                    txtNome.setText("");
+                    txtAutor.setText("");
+                    txtAssunto.setText("");
+                    txtStatus.setText("");
+                    String tam = String.format("%d", cesta.size());
+                    txtQuantidade.setText(tam);
             
-            JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+                    JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+                }
             } catch(HeadlessException e){
                 JOptionPane.showMessageDialog(null, "Não foi possivel adicionar\nERRO: " + e);
             }
@@ -399,6 +401,13 @@ public class TelaBuscar extends javax.swing.JFrame {
                 new TelaBuscar("").setVisible(true);
             }
         });
+    }
+    
+    public Boolean findLivroCesta(Livros livro){
+        for(int i=0; i<cesta.size(); i++){
+            if(cesta.get(i).getId() == livro.getId()) return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
