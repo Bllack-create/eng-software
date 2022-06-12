@@ -23,7 +23,7 @@ import model.dao.LivroDAO;
  * @author User
  */
 public class TelaBuscar extends javax.swing.JFrame {
-    private List<Livros> cesta = new ArrayList<Livros>();
+    public List<Livros> cesta = new ArrayList<Livros>();
 
     public List<Livros> getCesta() {
         return cesta;
@@ -167,6 +167,11 @@ public class TelaBuscar extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/carrinho-de-compras-carregado-24.png"))); // NOI18N
         jButton1.setText("Carrinho");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,6 +363,11 @@ public class TelaBuscar extends javax.swing.JFrame {
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantidadeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Ação ao clicar no botão Carrinho
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
