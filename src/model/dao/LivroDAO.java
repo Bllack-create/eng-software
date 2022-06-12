@@ -210,4 +210,45 @@ public class LivroDAO {
       }
         return livros;
     }
+    
+    public void alteraInformacoesEmprestimo(Livros livro){
+        //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+        
+        String sql = ("UPDATE livros SET status = ?, cpfUserEmp = ? WHERE idLivro = ?");
+        try{
+        
+            stmt = conexao.prepareStatement(sql);
+            stmt.setBoolean(1, Boolean.parseBoolean(livro.getStatus().toString()));
+            stmt.setString(2, ""); // tem que pegar o cpf do usuario
+            stmt.setInt(3, livro.getId());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso! ");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+    }
+    
+    public void fazEmprestimo(List<Livros> carrinho){
+        //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+        
+        try{
+        
+            for(Livros livroAtual : carrinho){
+                
+            }
+            
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao fazer emprestimo " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+        }
+    }
 }

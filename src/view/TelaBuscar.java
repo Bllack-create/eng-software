@@ -184,7 +184,7 @@ public class TelaBuscar extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Finalizar");
+        jButton3.setText("Finalizar Pedido");
 
         txtQuantidade.setEditable(false);
         txtQuantidade.setText("0");
@@ -224,7 +224,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                                     .addComponent(txtAssunto, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -280,7 +280,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +343,7 @@ public class TelaBuscar extends javax.swing.JFrame {
             livro.setStatus(TRUE);
             
             // adiciona na cesta
-                if(findLivroCesta(livro) == true){
+                //if(findLivroCesta(livro) == (true || false)){ // ainda dá um erro aqui
                     cesta.add(livro);
             
                     // limpa os campos
@@ -355,7 +355,7 @@ public class TelaBuscar extends javax.swing.JFrame {
                     txtQuantidade.setText(tam);
             
                     JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
-                }
+                //}
             } catch(HeadlessException e){
                 JOptionPane.showMessageDialog(null, "Não foi possivel adicionar\nERRO: " + e);
             }
@@ -368,7 +368,7 @@ public class TelaBuscar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Ação ao clicar no botão Carrinho
-       
+       new TelaCarrinho().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
