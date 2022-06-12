@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import java.awt.HeadlessException;
+import static java.lang.Boolean.TRUE;
+import java.util.ArrayList;
 import java.util.List;
 import model.bean.Livros;
 import model.dao.LivroDAO;
@@ -20,7 +23,15 @@ import model.dao.LivroDAO;
  * @author User
  */
 public class TelaBuscar extends javax.swing.JFrame {
+    private List<Livros> cesta = new ArrayList<>();
 
+    public List<Livros> getCesta() {
+        return cesta;
+    }
+
+    public void setCesta(List<Livros> cesta) {
+        this.cesta = cesta;
+    }
     //Intânciando as variaveis necessarias para manipular o banco de dados
     Connection conexao = null;
     PreparedStatement stmt = null;
@@ -66,7 +77,7 @@ public class TelaBuscar extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "NENHUM RESULTADO ENCONTRADO!\nVerifique a string de busca e tente novamente.");
         }
-    }
+    }                                    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,6 +169,11 @@ public class TelaBuscar extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ADICIONAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,11 +281,24 @@ public class TelaBuscar extends javax.swing.JFrame {
 
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
         // Ação de navegar sobre a tabela com as setas do teclado(Opcional)
+        if (jtLivros.getSelectedRow() != -1) {
+
+            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
+            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
+            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
+            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
+        }
     }//GEN-LAST:event_jtLivrosKeyReleased
 
     private void jtLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtLivrosMouseClicked
         // Ação de click na tabela para setar os valores nos campos
+        if (jtLivros.getSelectedRow() != -1) {
 
+            txtNome.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 1).toString());
+            txtAutor.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 2).toString());
+            txtAssunto.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 3).toString());
+            txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
+        }
     }//GEN-LAST:event_jtLivrosMouseClicked
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -280,6 +309,34 @@ public class TelaBuscar extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jtLivros.getSelectedRow() == -1){ // nenhum livro selecionado
+            JOptionPane.showMessageDialog(null, "Selecione um livro para adicionar a cesta!");
+        }
+        else{
+            try{
+            livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+            livro.setNome(txtNome.getText());
+            livro.setAutor(txtAutor.getText());
+            livro.setAssunto(txtAssunto.getText());
+            livro.setStatus(TRUE);
+            
+            // adiciona na cesta
+            cesta.add(livro);
+            
+            // limpa os campos
+            txtNome.setText("");
+            txtAutor.setText("");
+            txtAssunto.setText("");
+            txtStatus.setText("");
+            JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+            } catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null, "Não foi possivel adicionar\nERRO: " + e);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
