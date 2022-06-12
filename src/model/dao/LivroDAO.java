@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import model.bean.Livros;
 
@@ -221,29 +222,31 @@ public class LivroDAO {
         
             stmt = conexao.prepareStatement(sql);
             stmt.setBoolean(1, Boolean.parseBoolean(livro.getStatus().toString()));
-            stmt.setString(2, ""); // tem que pegar o cpf do usuario
+            stmt.setString(2, livro.getCpfUserEmp()); // tem que pegar o cpf do usuario
             stmt.setInt(3, livro.getId());
             
             stmt.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Atualizado com sucesso! ");
+       
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao fazer emprestimo do livro " + livro.getId() + "\n" + e);
         }finally{
                ConnectionFactory.closeConnection(conexao, stmt);
+        }
     }
     
-    public void fazEmprestimo(List<Livros> carrinho){
+    public void emprestimo(List<Livros> cesta){
         //Conexão ao banco de dados 
           Connection conexao = ConnectionFactory.conector();
           PreparedStatement stmt = null;
         
         try{
         
-            for(Livros livroAtual : carrinho){
-                
-            }
+              for (Iterator<Livros> it = cesta.iterator(); it.hasNext();) {
+                  Livros livroAtual = it.next();
+                  alteraInformacoesEmprestimo(livroAtual);
+              }
             
+              JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
             
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao fazer emprestimo " + e);

@@ -368,7 +368,7 @@ public class TelaBuscar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Ação ao clicar no botão Carrinho
-       new TelaCarrinho().setVisible(true);
+       new TelaCarrinho(cesta).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
