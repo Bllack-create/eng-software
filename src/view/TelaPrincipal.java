@@ -36,11 +36,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
         public void readJtable() {
-        //metodo para fazer a leitura da tabela
+        //metodo para fazer a leitura da tabela da pagina inicial junto com um contador
         
         DefaultTableModel modelo = (DefaultTableModel) jtLivros.getModel();
         modelo.setNumRows(0);
         LivroDAO livroDAO = new LivroDAO();
+        int cont = 0;
         
         for (Livros livro : livroDAO.read()) {
             if(livro.getStatus()!= TRUE){
@@ -48,9 +49,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 livro.getId(), livro.getNome(),
                 livro.getAutor(), livro.getAssunto(),
                 livro.getStatus()
-            });}
-
+            });
+            cont++;
+            }
         }
+
+            String contador = String.valueOf(cont);
+            txtQtd.setText(contador);
 
     }
 
@@ -72,6 +77,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jtLivros = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtQtd = new javax.swing.JTextField();
         jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -141,7 +148,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtLivros);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 250));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, 250));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("(Pesquise livros que estejam disponiveis)");
@@ -150,7 +157,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Livros indisponiveis para emprestimo");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, 20));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Quantidade de livros emprestados:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, -1, 20));
+
+        txtQtd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtdActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 618, 40, -1));
 
         jlBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
         jlBackground.setText("jLabel1");
@@ -233,6 +252,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    private void txtQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQtdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,7 +287,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin().setVisible(true);
-                //new TelaPrincipal().setVisible(true);
             }
         });
     }
@@ -275,6 +297,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -289,5 +312,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlLogin;
     private javax.swing.JTable jtLivros;
     private javax.swing.JTextField txtBusca;
+    private javax.swing.JTextField txtQtd;
     // End of variables declaration//GEN-END:variables
 }
