@@ -239,7 +239,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jlLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLoginMouseClicked
         // Ação ao clicar na imagem de login
-        new TelaLogin().setVisible(true);
+        new TelaLogin(false).setVisible(true);
     }//GEN-LAST:event_jlLoginMouseClicked
 
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
@@ -286,7 +286,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                new TelaLogin(false).setVisible(true);
             }
         });
     }

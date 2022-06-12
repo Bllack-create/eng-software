@@ -4,12 +4,15 @@
  */
 package view;
 
+import static java.lang.Boolean.FALSE;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.bean.Livros;
+import model.bean.Usuarios;
 import model.dao.LivroDAO;
 
 /**
@@ -80,7 +83,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLivros = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonFinalizaPedido = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
@@ -106,12 +109,12 @@ public class TelaCarrinho extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtLivros);
 
-        jButton1.setBackground(new java.awt.Color(255, 55, 55));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Finalizar pedido");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFinalizaPedido.setBackground(new java.awt.Color(255, 55, 55));
+        jButtonFinalizaPedido.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonFinalizaPedido.setText("Finalizar pedido");
+        jButtonFinalizaPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonFinalizaPedidoActionPerformed(evt);
             }
         });
 
@@ -136,7 +139,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonFinalizaPedido)
                         .addGap(11, 11, 11)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -162,14 +165,14 @@ public class TelaCarrinho extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonFinalizaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonFinalizaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizaPedidoActionPerformed
         // TODO add your handling code here:
         if(cesta.size() == 0){
             JOptionPane.showMessageDialog(null, "Você deve adicionar um livro no carrinho primeiro");
@@ -177,9 +180,24 @@ public class TelaCarrinho extends javax.swing.JFrame {
             this.dispose();
         }
         else{
+            Usuarios user = new Usuarios();
+            // força o login
+            new TelaLogin(true).setVisible(true);
+            //TelaLogin tela = new TelaLogin();
+            //tela.setVisible(true);
+            //user = tela.pegaInfor();
+            
+            // coloca o cpf do usuario que vai fazer o emprestimo e muda o status
+            for(Livros livro : cesta){
+                livro.setCpfUserEmp(user.getCpf());
+                livro.setStatus(FALSE);
+            }
+            
             // faz o emprestimo
+            LivroDAO dao = new LivroDAO();
+            dao.fazEmprestimo(cesta);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonFinalizaPedidoActionPerformed
 
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
         // TODO add your handling code here:
@@ -222,7 +240,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonFinalizaPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

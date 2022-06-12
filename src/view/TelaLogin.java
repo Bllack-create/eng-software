@@ -14,12 +14,23 @@ import model.dao.UsuarioDAO;
  * @author esrae
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    public Usuarios userInfor;
+    public boolean getInfor;
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLogin(boolean fun) {
         initComponents();
+        
+        getInfor = fun;
+    }
+
+    TelaLogin() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Usuarios pegaInfor(){
+        return userInfor;
     }
 
     /**
@@ -38,6 +49,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonEntrar = new javax.swing.JButton();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonRecuperarSenha = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setText("Email:");
 
@@ -138,7 +151,10 @@ public class TelaLogin extends javax.swing.JFrame {
             jPasswordField.setText("");
         }
         else{
-            new TelaPrincipal().setVisible(true);
+            if(getInfor)
+                userInfor = usuario;
+            else
+                new TelaPrincipal().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
@@ -177,8 +193,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private Boolean getInfor;
             public void run() {
-                new TelaLogin().setVisible(true);
+                new TelaLogin(getInfor).setVisible(true);
             }
         });
     }

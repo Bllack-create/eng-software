@@ -234,7 +234,7 @@ public class LivroDAO {
         }
     }
     
-    public void emprestimo(List<Livros> cesta){
+    public void fazEmprestimo(List<Livros> cesta){
         //Conexão ao banco de dados 
           Connection conexao = ConnectionFactory.conector();
           PreparedStatement stmt = null;
@@ -245,8 +245,22 @@ public class LivroDAO {
                   Livros livroAtual = it.next();
                   alteraInformacoesEmprestimo(livroAtual);
               }
-            
-              JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
+              
+              // tenta mostra um comprovante de emprestimo e as informaçoes do usuario que fez
+              String informacoes = "O usuario " + cesta.get(0).getCpfUserEmp() + " fez o emprestimo dos seguintes livros:\n\n";
+              String id;
+              String nome;
+              String autor;
+              // adiciona as informações
+              for (Livros livroAtual : cesta) {
+                  nome = livroAtual.getNome();
+                  autor = livroAtual.getAutor();
+                  id = String.format("%d   -  ", livroAtual.getId());
+                  informacoes = String.format("%s\n", informacoes + id + "  -  " + nome + "  -  " + autor + "\n");
+              }
+              
+              JOptionPane.showMessageDialog(null, informacoes, "Emprestimo realizado com sucesso", 0);
+              //JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
             
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao fazer emprestimo " + e);
