@@ -194,7 +194,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
             user = dao.buscaUsuarioPorEmail(email);
             
             while(user.getEmail() == "null"){
-                email = JOptionPane.showInputDialog(null, "Digite se email:", "SENHA INCORRETA!", HEIGHT);
+                email = JOptionPane.showInputDialog(null, "Digite se email:", "EMAIL INCORRETO!", HEIGHT);
             
                 user = dao.buscaUsuarioPorEmail(email);
             }

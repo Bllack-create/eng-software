@@ -256,10 +256,10 @@ public class LivroDAO {
                   nome = livroAtual.getNome();
                   autor = livroAtual.getAutor();
                   id = String.format("%d   -  ", livroAtual.getId());
-                  informacoes = String.format("%s\n", informacoes + id + "  -  " + nome + "  -  " + autor + "\n");
+                  informacoes = String.format("%s\n", informacoes + id + nome + "  -  " + autor + "\n");
               }
               
-              JOptionPane.showMessageDialog(null, informacoes, "Emprestimo realizado com sucesso", 0);
+              JOptionPane.showMessageDialog(null, informacoes, "Emprestimo realizado com sucesso", 1);
               //JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
             
         }catch (Exception e){

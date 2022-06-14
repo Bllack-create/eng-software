@@ -13,11 +13,15 @@ import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
 import java.awt.Frame;
 import java.awt.HeadlessException;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.util.ArrayList;
 import java.util.List;
 import model.bean.Livros;
+import model.bean.Usuarios;
 import model.dao.LivroDAO;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -186,6 +190,11 @@ public class TelaBuscar extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Finalizar Pedido");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         txtQuantidade.setEditable(false);
         txtQuantidade.setText("0");
@@ -370,6 +379,45 @@ public class TelaBuscar extends javax.swing.JFrame {
             txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_jtLivrosMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if(cesta.size() == 0){
+            JOptionPane.showMessageDialog(null, "Você deve adicionar um livro no carrinho primeiro");
+            new TelaBuscar("txtBusca").setVisible(true);
+            this.dispose();
+        }
+        else{
+            Usuarios user = new Usuarios();
+            UsuarioDAO dao = new UsuarioDAO();
+            
+            // Vou em uma gambiarra com caixas de dialogo
+            
+            String email;
+            
+            email = JOptionPane.showInputDialog("Digite seu email:");
+            
+            user = dao.buscaUsuarioPorEmail(email);
+            
+            while(user.getEmail() == "null"){
+                email = JOptionPane.showInputDialog(null, "Digite se email:", "EMAIL INCORRETO!", HEIGHT);
+            
+                user = dao.buscaUsuarioPorEmail(email);
+            }
+            
+            
+            // coloca o cpf do usuario que vai fazer o emprestimo e muda o status
+            for(Livros livro : cesta){
+                livro.setCpfUserEmp(user.getCpf());
+                livro.setStatus(FALSE);
+            }
+            
+            // faz o emprestimo
+            LivroDAO dao1 = new LivroDAO();
+            dao1.fazEmprestimo(cesta);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
