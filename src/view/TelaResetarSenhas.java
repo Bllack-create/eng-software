@@ -162,13 +162,13 @@ public class TelaResetarSenhas extends javax.swing.JFrame {
             
             todos = dao.buscaTodosUsuarios();
             
-            Usuarios aux = new Usuarios();
+            //JOptionPane.showMessageDialog(null, "Tam " + String.format("%d", todos.size()));
             
             for(Usuarios user : todos){
-                aux = dao.buscaUsuarioPorEmaileCPF(user.getEmail(), user.getCpf());
-                aux.setSenha(Arrays.toString(jPasswordNova.getPassword()));
-                
-                dao.updateSenha(aux);
+                user.setSenha(Arrays.toString(jPasswordNova.getPassword()));
+            
+                // altera no banco
+                dao.updateSenhaSemInformar(user);
             }
             
             JOptionPane.showMessageDialog(null, "Senhas alteradas com sucesso!");

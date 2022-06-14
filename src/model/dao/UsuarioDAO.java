@@ -143,6 +143,29 @@ public class UsuarioDAO {
         }
     }
     
+    public void updateSenhaSemInformar(Usuarios usuario){
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+        
+        try{
+            stmt = conexao.prepareStatement("UPDATE usuario SET senha = ? where cpf = ? AND email = ?");
+            
+            stmt.setString(1, usuario.getSenha());
+            stmt.setString(2, usuario.getCpf());
+            stmt.setString(3, usuario.getEmail());
+            
+            // executa o sql
+            stmt.execute();
+            stmt.close();
+            //JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+        }catch(HeadlessException | SQLException e ){
+            System.out.println("Falha na alteração de senha "+ e);
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt);
+        }
+    }
+    
     public List<Usuarios> buscaTodosUsuarios(){
         List<Usuarios> rs = new ArrayList<Usuarios>();
         Usuarios usuario = new Usuarios();
@@ -156,7 +179,6 @@ public class UsuarioDAO {
             
             // executa o sql
             lista = stmt.executeQuery();
-            stmt.close();
             
             while(lista.next()){
                 usuario.setNomeCompleto(lista.getString("nomeCompleto"));
