@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import java.awt.Frame;
 import java.awt.HeadlessException;
 import static java.lang.Boolean.TRUE;
 import java.util.ArrayList;
@@ -298,6 +299,56 @@ public class TelaBuscar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantidadeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jtLivros.getSelectedRow() == -1){ // nenhum livro selecionado
+            JOptionPane.showMessageDialog(null, "Selecione um livro para adicionar a cesta!");
+        }
+        else{
+            try{
+                livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+                livro.setNome(txtNome.getText());
+                livro.setAutor(txtAutor.getText());
+                livro.setAssunto(txtAssunto.getText());
+                livro.setStatus(TRUE);
+
+                // adiciona na cesta
+                //if(findLivroCesta(livro) == (true || false)){ // ainda dá um erro aqui
+                    cesta.add(livro);
+
+                    // limpa os campos
+                    txtNome.setText("");
+                    txtAutor.setText("");
+                    txtAssunto.setText("");
+                    txtStatus.setText("");
+                    String tam = String.format("%d", cesta.size());
+                    txtQuantidade.setText(tam);
+
+                    JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+                    //}
+            } catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null, "Não foi possivel adicionar\nERRO: " + e);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new TelaCarrinho(cesta).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        readJtable();
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
         // Ação de navegar sobre a tabela com as setas do teclado(Opcional)
         if (jtLivros.getSelectedRow() != -1) {
@@ -319,57 +370,6 @@ public class TelaBuscar extends javax.swing.JFrame {
             txtStatus.setText(jtLivros.getValueAt(jtLivros.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_jtLivrosMouseClicked
-
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-        readJtable();
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscaActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if(jtLivros.getSelectedRow() == -1){ // nenhum livro selecionado
-            JOptionPane.showMessageDialog(null, "Selecione um livro para adicionar a cesta!");
-        }
-        else{
-            try{
-            livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
-            livro.setNome(txtNome.getText());
-            livro.setAutor(txtAutor.getText());
-            livro.setAssunto(txtAssunto.getText());
-            livro.setStatus(TRUE);
-            
-            // adiciona na cesta
-                //if(findLivroCesta(livro) == (true || false)){ // ainda dá um erro aqui
-                    cesta.add(livro);
-            
-                    // limpa os campos
-                    txtNome.setText("");
-                    txtAutor.setText("");
-                    txtAssunto.setText("");
-                    txtStatus.setText("");
-                    String tam = String.format("%d", cesta.size());
-                    txtQuantidade.setText(tam);
-            
-                    JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
-                //}
-            } catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null, "Não foi possivel adicionar\nERRO: " + e);
-            }
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidadeActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Ação ao clicar no botão Carrinho
-       new TelaCarrinho(cesta).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Dialog;
 import static java.lang.Boolean.FALSE;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.swing.table.TableRowSorter;
 import model.bean.Livros;
 import model.bean.Usuarios;
 import model.dao.LivroDAO;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -176,16 +178,27 @@ public class TelaCarrinho extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cesta.size() == 0){
             JOptionPane.showMessageDialog(null, "Você deve adicionar um livro no carrinho primeiro");
-            new TelaBuscar("").setVisible(true);
+            //new TelaBuscar("").setVisible(true);
             this.dispose();
         }
         else{
             Usuarios user = new Usuarios();
-            // força o login
-            new TelaLogin(true).setVisible(true);
-            //TelaLogin tela = new TelaLogin();
-            //tela.setVisible(true);
-            //user = tela.pegaInfor();
+            UsuarioDAO dao = new UsuarioDAO();
+            
+            // Vou em uma gambiarra com caixas de dialogo
+            
+            String email;
+            
+            email = JOptionPane.showInputDialog("Digite seu email:");
+            
+            user = dao.buscaUsuarioPorEmail(email);
+            
+            while(user.getEmail() == "null"){
+                email = JOptionPane.showInputDialog(null, "Digite se email:", "SENHA INCORRETA!", HEIGHT);
+            
+                user = dao.buscaUsuarioPorEmail(email);
+            }
+            
             
             // coloca o cpf do usuario que vai fazer o emprestimo e muda o status
             for(Livros livro : cesta){
@@ -194,8 +207,8 @@ public class TelaCarrinho extends javax.swing.JFrame {
             }
             
             // faz o emprestimo
-            LivroDAO dao = new LivroDAO();
-            dao.fazEmprestimo(cesta);
+            LivroDAO dao1 = new LivroDAO();
+            dao1.fazEmprestimo(cesta);
         }
     }//GEN-LAST:event_jButtonFinalizaPedidoActionPerformed
 
