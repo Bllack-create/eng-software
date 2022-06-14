@@ -89,6 +89,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -221,6 +223,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Funções Administrativas");
+
+        jMenuItem7.setText("Resetar senha de todos Usuários");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -255,6 +269,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void txtQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQtdActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        new TelaResetarSenhas().setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,6 +319,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -307,6 +327,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlBackground;
     private javax.swing.JLabel jlLogin;

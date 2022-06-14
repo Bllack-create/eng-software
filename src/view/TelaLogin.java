@@ -50,8 +50,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonCadastrar = new javax.swing.JButton();
         jButtonRecuperarSenha = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
         jLabel1.setText("Email:");
 
         jLabel2.setText("Senha:");

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.Usuarios;
 
@@ -139,5 +141,42 @@ public class UsuarioDAO {
         }finally{
             ConnectionFactory.closeConnection(conexao, stmt);
         }
+    }
+    
+    public List<Usuarios> buscaTodosUsuarios(){
+        List<Usuarios> rs = new ArrayList<Usuarios>();
+        Usuarios usuario = new Usuarios();
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+        ResultSet lista = null;
+        
+        try{
+            stmt = conexao.prepareStatement("SELECT * FROM usuario");
+            
+            // executa o sql
+            lista = stmt.executeQuery();
+            stmt.close();
+            
+            while(lista.next()){
+                usuario.setNomeCompleto(lista.getString("nomeCompleto"));
+                usuario.setCpf(lista.getString("cpf"));
+                usuario.setDataNascimento(lista.getString("nascimento"));
+                usuario.setSexo(lista.getString("sexo"));
+                usuario.setEmail(lista.getString("email"));
+                usuario.setSenha(lista.getString("senha"));
+                
+                rs.add(usuario);
+            }
+            
+            return rs;
+            
+        }catch(HeadlessException | SQLException e ){
+            System.out.println("Falha na alteração de senhas "+ e);
+        }finally{
+            ConnectionFactory.closeConnection(conexao, stmt);
+        }
+        
+        return rs;
     }
 }
