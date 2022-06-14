@@ -150,7 +150,7 @@ public class TelaResetarSenhas extends javax.swing.JFrame {
         if(Arrays.toString(jPasswordNova.getPassword()).isEmpty() || Arrays.toString(jPasswordConfirmacao.getPassword()).isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }
-        else if(!Arrays.toString(jPasswordNova.getPassword()).equals(Arrays.toString(jPasswordConfirmacao.getPassword()))){
+        else if(Arrays.toString(jPasswordNova.getPassword()) == null ? (Arrays.toString(jPasswordConfirmacao.getPassword())) != null : !Arrays.toString(jPasswordNova.getPassword()).equals(Arrays.toString(jPasswordConfirmacao.getPassword()))){
             JOptionPane.showMessageDialog(null, "As senhas são diferentes!");
             jPasswordNova.setText("");
             jPasswordConfirmacao.setText("");
@@ -162,10 +162,13 @@ public class TelaResetarSenhas extends javax.swing.JFrame {
             
             todos = dao.buscaTodosUsuarios();
             
+            Usuarios aux = new Usuarios();
+            
             for(Usuarios user : todos){
-                user.setSenha(Arrays.toString(jPasswordNova.getPassword()));
+                aux = dao.buscaUsuarioPorEmaileCPF(user.getEmail(), user.getCpf());
+                aux.setSenha(Arrays.toString(jPasswordNova.getPassword()));
                 
-                dao.updateSenha(user);
+                dao.updateSenha(aux);
             }
             
             JOptionPane.showMessageDialog(null, "Senhas alteradas com sucesso!");
