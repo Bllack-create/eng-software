@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/scriptSQL/Automação%20Pra%20inserir%20livros</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaBuscar.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaPrincipal.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaLogin.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaResetarSenhas.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaDevolução.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/model/dao/LivroDAO.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/model/dao/UsuarioDAO.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/view/TelaCarrinho.java</file>
-            <file>file:/C:/Users/esrae/Projects/eng-software/src/scriptSQL/CriacaoBanco_Tabelas.sql</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaCadastroLivrosAtualizar.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaDevolução.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaCadastroCliente.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaCarrinho.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaPrincipal.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaCadastroLivros.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaRecuperaçãoSenha.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaBuscar.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaLogin.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaCadastroLivrosExcluir.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Área%20de%20Trabalho/Imagens/Documentos/Netbeans/eng-software-main/src/view/TelaResetarSenhas.java</file>
         </group>
     </open-files>
 </project-private>

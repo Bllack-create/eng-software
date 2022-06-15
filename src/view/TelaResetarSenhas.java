@@ -57,7 +57,7 @@ public class TelaResetarSenhas extends javax.swing.JFrame {
 
         jLabel2.setText("Confirmar Nova Senha");
 
-        jButtonCancela.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonCancela.setBackground(new java.awt.Color(255, 55, 55));
         jButtonCancela.setText("Cancelar");
         jButtonCancela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +65,7 @@ public class TelaResetarSenhas extends javax.swing.JFrame {
             }
         });
 
-        jButtonReseta.setBackground(new java.awt.Color(255, 51, 51));
+        jButtonReseta.setBackground(new java.awt.Color(0, 153, 200));
         jButtonReseta.setText("Resetar");
         jButtonReseta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -93,6 +93,8 @@ public class TelaDevolução extends javax.swing.JFrame {
             }
         });
 
+        JBTAdicionar.setBackground(new java.awt.Color(0, 153, 0));
+        JBTAdicionar.setForeground(new java.awt.Color(255, 255, 255));
         JBTAdicionar.setText("ADICIONAR");
         JBTAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,8 @@ public class TelaDevolução extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtLivros);
 
+        JTBFinalizar.setBackground(new java.awt.Color(255, 55, 55));
+        JTBFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         JTBFinalizar.setText("FINALIZAR");
         JTBFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

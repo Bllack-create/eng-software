@@ -176,6 +176,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
+        jbSalvar.setBackground(new java.awt.Color(0, 153, 0));
+        jbSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jbSalvar.setText("Salvar");
         jbSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,8 +233,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             usuario.setSenha(Arrays.toString(txtSenha.getPassword()));
             
             dao.create(usuario);
-            
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
             
             this.dispose();
         }

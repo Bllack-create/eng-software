@@ -98,6 +98,7 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
         jLabel3.setText("Assunto:");
 
         jbExcluir.setBackground(new java.awt.Color(255, 55, 55));
+        jbExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jbExcluir.setText("Excluir");
         jbExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

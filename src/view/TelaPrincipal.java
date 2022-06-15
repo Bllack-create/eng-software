@@ -11,7 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import java.awt.Image;
+import java.awt.Toolkit;
 import static java.lang.Boolean.TRUE;
+import java.net.URL;
+import javax.swing.JFrame;
 import model.bean.Livros;
 import model.dao.LivroDAO;
 
@@ -77,7 +81,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtQtd = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -91,6 +94,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
@@ -162,15 +167,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 618, 40, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/sincronizar-com texto-80.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 80));
-
         jlBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
         jlBackground.setText("jLabel1");
         getContentPane().add(jlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 680));
@@ -222,6 +218,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/book_edit.png"))); // NOI18N
         jMenuItem5.setText("Alterar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/book_go.png"))); // NOI18N
@@ -249,11 +250,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/arrow_refresh.png"))); // NOI18N
+        jMenu5.setText("Página");
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/arrow_refresh_small.png"))); // NOI18N
+        jMenuItem10.setText("Atualizar");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu5);
+
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/door.png"))); // NOI18N
         jMenu4.setText("Sair");
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/door_in.png"))); // NOI18N
         jMenuItem9.setText("Sair");
+        jMenuItem9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem9MouseClicked(evt);
+            }
+        });
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem9);
 
         jMenuBar1.add(jMenu4);
@@ -298,15 +323,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new TelaDevolução().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // Ação ao clicar no botão atualizar pagina
-        
-        readJtable();
-    }//GEN-LAST:event_jLabel7MouseClicked
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        // Ação ao clicar no menu Livros Excluir
+        new TelaCadastroLivrosExcluir().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // Ação ao clicar no meno Livros Atualizar
+        new TelaCadastroLivrosAtualizar().setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem9MouseClicked
+        //
+    }//GEN-LAST:event_jMenuItem9MouseClicked
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // Ação ao clicar no botão sair
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // Ação ao clicar no botão atualizar pagina
+        readJtable();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,6 +378,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin(false).setVisible(true);
+                //new TelaPrincipal().setVisible(true);
             }
         });
     }
@@ -349,13 +389,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -370,4 +411,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtQtd;
     // End of variables declaration//GEN-END:variables
+
+
 }
