@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
 import java.awt.HeadlessException;
+import static java.lang.Boolean.TRUE;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -277,14 +278,16 @@ public class LivroDAO {
           PreparedStatement stmt = null;
         
         try{
-        
+              String informacoes = "O usuario " + cesta.get(0).getCpfUserEmp() + " fez a devolução dos seguintes livros:\n\n";
+              
               for (Iterator<Livros> it = cesta.iterator(); it.hasNext();) {
                   Livros livroAtual = it.next();
+                  livroAtual.setCpfUserEmp("");
+                  livroAtual.setStatus(TRUE);
                   alteraInformacoesEmprestimo(livroAtual);
               }
               
               // tenta mostra um comprovante de emprestimo e as informaçoes do usuario que fez
-              String informacoes = "O usuario " + cesta.get(0).getCpfUserEmp() + " fez a devolução dos seguintes livros:\n\n";
               String id;
               String nome;
               String autor;
