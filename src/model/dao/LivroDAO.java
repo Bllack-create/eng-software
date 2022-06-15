@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import connection.ConnectionFactory;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -262,10 +264,78 @@ public class LivroDAO {
               JOptionPane.showMessageDialog(null, informacoes, "Emprestimo realizado com sucesso", 1);
               //JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
             
-        }catch (Exception e){
+        }catch (HeadlessException e){
             JOptionPane.showMessageDialog(null, "Erro ao fazer emprestimo " + e);
         }finally{
                ConnectionFactory.closeConnection(conexao, stmt);
         }
+    }
+    
+    public void fazDevolucao(List<Livros> cesta){
+        //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+        
+        try{
+        
+              for (Iterator<Livros> it = cesta.iterator(); it.hasNext();) {
+                  Livros livroAtual = it.next();
+                  alteraInformacoesEmprestimo(livroAtual);
+              }
+              
+              // tenta mostra um comprovante de emprestimo e as informaçoes do usuario que fez
+              String informacoes = "O usuario " + cesta.get(0).getCpfUserEmp() + " fez a devolução dos seguintes livros:\n\n";
+              String id;
+              String nome;
+              String autor;
+              // adiciona as informações
+              for (Livros livroAtual : cesta) {
+                  nome = livroAtual.getNome();
+                  autor = livroAtual.getAutor();
+                  id = String.format("%d   -  ", livroAtual.getId());
+                  informacoes = String.format("%s\n", informacoes + id + nome + "  -  " + autor + "\n");
+              }
+              
+              JOptionPane.showMessageDialog(null, informacoes, "Devolução realizada com sucesso", 1);
+              //JOptionPane.showMessageDialog(null, "Emprestimo realizado com sucesso");
+            
+        }catch (HeadlessException e){
+            JOptionPane.showMessageDialog(null, "Erro ao fazer devolução " + e);
+        }finally{
+               ConnectionFactory.closeConnection(conexao, stmt);
+        }
+    }
+    
+    public Livros buscaLivrosID(int id){
+        //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          PreparedStatement stmt = null;
+          ResultSet rs = null;
+          Livros livro = new Livros();
+          
+          livro.setId(-1);
+          
+        try{
+            stmt = conexao.prepareStatement("SELECT * FROM livros WHERE idLivro = ?");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                livro.setId(id);
+                livro.setNome(rs.getString("nome"));
+                livro.setAutor(rs.getString("autor"));
+                livro.setAssunto(rs.getString("assunto"));
+                livro.setStatus(rs.getBoolean("status"));
+                livro.setCpfUserEmp(rs.getString("cpfUserEmp"));
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao encontrar o livro " + String.format("%d ", id) + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(conexao, stmt);
+        }
+        return livro;
     }
 }

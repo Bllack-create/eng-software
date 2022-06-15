@@ -95,7 +95,7 @@ public class UsuarioDAO {
         usuario.setCpf("null");
         
         try{
-            stmt = conexao.prepareStatement("SELECT * FROM usuario where email = ? AND cpf = ?");
+            stmt = conexao.prepareStatement("SELECT * FROM usuario where email = ? OR cpf = ?");
             
             stmt.setString(1, email);
             stmt.setString(2, cpf);
