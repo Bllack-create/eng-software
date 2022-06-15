@@ -41,7 +41,6 @@ public class TelaRecuperaçãoSenha extends javax.swing.JFrame {
         jPasswordNovaSenha = new javax.swing.JPasswordField();
         jPasswordConfNovaSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Recuperação de Senha");
         setLocation(new java.awt.Point(350, 50));
 

@@ -81,8 +81,6 @@ public class TelaDevolução extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
 
         setTitle("Tela de Devolução");
-        setFocusTraversalPolicyProvider(true);
-        setFocusable(false);
         setLocation(new java.awt.Point(350, 50));
 
         jLabel1.setText("Digite o ID:");
