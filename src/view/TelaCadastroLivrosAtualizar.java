@@ -19,7 +19,7 @@ import model.dao.LivroDAO;
  *
  * @author User
  */
-public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
+public class TelaCadastroLivrosAtualizar extends javax.swing.JFrame {
 
     //Intânciando as variaveis necessarias para manipular o banco de dados
     Connection conexao = null;
@@ -32,7 +32,7 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroLivros
      */
-    public TelaCadastroLivrosExcluir() {
+    public TelaCadastroLivrosAtualizar() {
         initComponents();
 
         //Ordenação da tabela
@@ -78,7 +78,7 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtAssunto = new javax.swing.JTextField();
-        jbExcluir = new javax.swing.JButton();
+        jbAtualizar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -97,11 +97,12 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
 
         jLabel3.setText("Assunto:");
 
-        jbExcluir.setBackground(new java.awt.Color(255, 55, 55));
-        jbExcluir.setText("Excluir");
-        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jbAtualizar.setBackground(new java.awt.Color(0, 153, 204));
+        jbAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        jbAtualizar.setText("Atualizar");
+        jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirActionPerformed(evt);
+                jbAtualizarActionPerformed(evt);
             }
         });
 
@@ -143,8 +144,8 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                        .addComponent(jbAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +175,8 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
                         .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbExcluir)
-                        .addGap(21, 21, 21))))
+                        .addComponent(jbAtualizar)
+                        .addGap(22, 22, 22))))
         );
 
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,6 +240,49 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
+        // Ação ao clicar no botão ATUALIZAR
+
+        switch (JOptionPane.showConfirmDialog(null, "Deseja fazer a atualização", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
+
+            case 0:
+
+                if (jtLivros.getSelectedRow() != -1) {
+
+                    //Metodo Create para o banco de dados
+                    LivroDAO dao = new LivroDAO();
+
+                    //Campos validados, logo será criado no banco de dados
+                    livro.setNome(txtNome.getText());
+                    livro.setAutor(txtAutor.getText());
+                    livro.setAssunto(txtAssunto.getText());
+                    livro.setStatus(Boolean.parseBoolean(txtStatus.getText()));
+                    livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+
+                    dao.update(livro);
+
+                    //Limpar os campos após atualizar
+                    txtNome.setText("");
+                    txtAutor.setText("");
+                    txtAssunto.setText("");
+
+                    //Chamando a readJtable para mostra os dados do banco
+                    readJtable();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecione um livro para atualizar");
+                }
+                break;
+
+            case 1:
+                JOptionPane.showMessageDialog(null, "Nenhuma mudança foi feita!");
+                break;
+
+        }
+
+
+    }//GEN-LAST:event_jbAtualizarActionPerformed
+
     private void jtLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLivrosKeyReleased
         // Ação de navegar sobre a tabela com as setas do teclado(Opcional)
 
@@ -264,32 +308,6 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jtLivrosMouseClicked
 
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // Ação ao clicar no botão EXCLUIR
-
-        //System.out.println("Linha selecionada"+ jtLivros.getSelectedRow()); //para testar a função SelectedRow
-        if (jtLivros.getSelectedRow() != -1) {
-            //Metodo Create para o banco de dados
-            LivroDAO dao = new LivroDAO();
-
-            livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
-
-            dao.delete(livro);
-
-            txtNome.setText("");
-            txtAssunto.setText("");
-            txtAutor.setText("");
-            txtStatus.setText("");
-
-            //Chamando a readJtable para mostra os dados do banco
-            readJtable();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um livro para excluir");
-        }
-
-    }//GEN-LAST:event_jbExcluirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -307,13 +325,13 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLivrosExcluir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroLivrosAtualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLivrosExcluir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroLivrosAtualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLivrosExcluir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroLivrosAtualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLivrosExcluir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroLivrosAtualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -341,7 +359,7 @@ public class TelaCadastroLivrosExcluir extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbAtualizar;
     private javax.swing.JTable jtLivros;
     private javax.swing.JTextField txtAssunto;
     private javax.swing.JTextField txtAutor;

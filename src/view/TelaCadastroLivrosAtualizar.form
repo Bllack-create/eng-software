@@ -91,8 +91,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jbExcluir" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="jbAtualizar" min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -132,8 +132,8 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jbExcluir" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="jbAtualizar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -162,15 +162,18 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtAssunto">
         </Component>
-        <Component class="javax.swing.JButton" name="jbExcluir">
+        <Component class="javax.swing.JButton" name="jbAtualizar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="37" green="37" red="ff" type="rgb"/>
+              <Color blue="cc" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Excluir"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Atualizar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbExcluirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAtualizarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
