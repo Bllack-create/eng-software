@@ -50,6 +50,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonCadastrar = new javax.swing.JButton();
         jButtonRecuperarSenha = new javax.swing.JButton();
 
+        setTitle("Tela de Login");
+        setLocation(new java.awt.Point(350, 50));
+
         jLabel1.setText("Email:");
 
         jLabel2.setText("Senha:");

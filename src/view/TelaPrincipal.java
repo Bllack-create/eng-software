@@ -68,8 +68,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jlLogin = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -79,6 +77,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtQtd = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jlBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -92,23 +91,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Entrar");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-
-        jlLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/icons8-login-80 .png"))); // NOI18N
-        jlLogin.setText("jLabel2");
-        jlLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlLoginMouseClicked(evt);
-            }
-        });
-        getContentPane().add(jlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 120));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/Icone de busca.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,12 +154,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel6.setText("Quantidade de livros emprestados:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, -1, 20));
 
+        txtQtd.setEditable(false);
         txtQtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQtdActionPerformed(evt);
             }
         });
         getContentPane().add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 618, 40, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/sincronizar-com texto-80.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 80));
 
         jlBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/biblioteca.jpg"))); // NOI18N
         jlBackground.setText("jLabel1");
@@ -216,13 +213,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/book_delete.png"))); // NOI18N
         jMenuItem4.setText("Excluir");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/book_edit.png"))); // NOI18N
         jMenuItem5.setText("Alterar");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem8.setText("Fazer Devolução");
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/book_go.png"))); // NOI18N
+        jMenuItem8.setText("Devolução");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -232,9 +235,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Funções Administrativas");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/group.png"))); // NOI18N
+        jMenu3.setText("Fun. Administrativas");
 
-        jMenuItem7.setText("Resetar senha de todos Usuários");
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/group_edit.png"))); // NOI18N
+        jMenuItem7.setText("Resetar senha de Usuário");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -243,6 +248,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/door.png"))); // NOI18N
+        jMenu4.setText("Sair");
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/door_in.png"))); // NOI18N
+        jMenuItem9.setText("Sair");
+        jMenu4.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -259,11 +273,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Ação ao clicar no menu item livros, Cadastrar:
         new TelaCadastroLivros().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jlLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLoginMouseClicked
-        // Ação ao clicar na imagem de login
-        new TelaLogin(false).setVisible(true);
-    }//GEN-LAST:event_jlLoginMouseClicked
 
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
@@ -288,6 +297,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaDevolução().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // Ação ao clicar no botão atualizar pagina
+        
+        readJtable();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,15 +344,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -343,9 +363,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlBackground;
-    private javax.swing.JLabel jlLogin;
     private javax.swing.JTable jtLivros;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtQtd;

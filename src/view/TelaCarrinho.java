@@ -90,6 +90,9 @@ public class TelaCarrinho extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
 
+        setTitle("Carrinho");
+        setLocation(new java.awt.Point(350, 50));
+
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -124,6 +127,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
 
         jLabel2.setText("Quantidade:");
 
+        txtQuantidade.setEditable(false);
         txtQuantidade.setText("0");
         txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +156,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

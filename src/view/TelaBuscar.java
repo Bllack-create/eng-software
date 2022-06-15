@@ -112,6 +112,10 @@ public class TelaBuscar extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         txtQuantidade = new javax.swing.JTextField();
 
+        setTitle("Tela de Busca");
+        setFocusableWindowState(false);
+        setLocation(new java.awt.Point(250, 50));
+
         jtLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

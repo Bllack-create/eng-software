@@ -80,6 +80,11 @@ public class TelaDevolução extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
 
+        setTitle("Tela de Devolução");
+        setFocusTraversalPolicyProvider(true);
+        setFocusable(false);
+        setLocation(new java.awt.Point(350, 50));
+
         jLabel1.setText("Digite o ID:");
 
         txtId.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +130,7 @@ public class TelaDevolução extends javax.swing.JFrame {
 
         jLabel2.setText("Quantidade");
 
+        txtQuantidade.setEditable(false);
         txtQuantidade.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
