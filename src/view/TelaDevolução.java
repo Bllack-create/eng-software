@@ -253,14 +253,7 @@ public class TelaDevolução extends javax.swing.JFrame {
                 user = dao.buscaUsuarioPorEmail(email);
             }
             
-            
-            // coloca o cpf do usuario que vai fazer o emprestimo e muda o status
-            for(Livros livro : lista){
-                livro.setCpfUserEmp("");
-                livro.setStatus(TRUE);
-            }
-            
-            // faz o emprestimo
+            // faz a devol~ção
             LivroDAO dao1 = new LivroDAO();
             dao1.fazDevolucao(lista);
             this.dispose();
