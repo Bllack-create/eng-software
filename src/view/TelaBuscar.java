@@ -322,15 +322,16 @@ public class TelaBuscar extends javax.swing.JFrame {
         }
         else{
             try{
-                livro.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
-                livro.setNome(txtNome.getText());
-                livro.setAutor(txtAutor.getText());
-                livro.setAssunto(txtAssunto.getText());
-                livro.setStatus(TRUE);
+                Livros livr = new Livros();
+                livr.setId((int) jtLivros.getValueAt(jtLivros.getSelectedRow(), 0));
+                livr.setNome(txtNome.getText());
+                livr.setAutor(txtAutor.getText());
+                livr.setAssunto(txtAssunto.getText());
+                livr.setStatus(TRUE);
 
                 // adiciona na cesta
                 //if(findLivroCesta(livro) == (true || false)){ // ainda dá um erro aqui
-                    cesta.add(livro);
+                    cesta.add(livr);
 
                     // limpa os campos
                     txtNome.setText("");
@@ -410,14 +411,15 @@ public class TelaBuscar extends javax.swing.JFrame {
             
             
             // coloca o cpf do usuario que vai fazer o emprestimo e muda o status
-            for(Livros livro : cesta){
-                livro.setCpfUserEmp(user.getCpf());
-                livro.setStatus(FALSE);
+            for(Livros l : cesta){
+                l.setCpfUserEmp(user.getCpf());
+                l.setStatus(FALSE);
             }
             
             // faz o emprestimo
             LivroDAO dao1 = new LivroDAO();
             dao1.fazEmprestimo(cesta);
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed

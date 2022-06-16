@@ -213,6 +213,7 @@ public class TelaCarrinho extends javax.swing.JFrame {
             // faz o emprestimo
             LivroDAO dao1 = new LivroDAO();
             dao1.fazEmprestimo(cesta);
+            this.dispose();
         }
     }//GEN-LAST:event_jButtonFinalizaPedidoActionPerformed
 
