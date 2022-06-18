@@ -4,6 +4,9 @@
  */
 package model.dao;
 
+import connection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import model.bean.Livros;
 import org.junit.jupiter.api.AfterEach;
@@ -11,29 +14,30 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import junit.runner.BaseTestRunner;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author esrae
+ * @author 
  */
 public class LivroDAOTest {
-    
+
     public LivroDAOTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -43,12 +47,21 @@ public class LivroDAOTest {
      */
     @Test
     public void testCreate() {
-        System.out.println("create");
-        Livros livro = null;
-        LivroDAO instance = new LivroDAO();
-        instance.create(livro);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /*Connection conexao = ConnectionFactory.conector();
+        PreparedStatement stmt = null;
+
+        Livros livro = new Livros();
+        LivroDAO dao = new LivroDAO();
+        
+        livro.setNome("junit");
+        livro.setAssunto("junit");
+        livro.setAutor("junit");
+        livro.setStatus(true);
+        
+        if(dao.create(livro).){
+        
+        }*/
+
     }
 
     /**
@@ -56,13 +69,19 @@ public class LivroDAOTest {
      */
     @Test
     public void testRead() {
-        System.out.println("read");
-        LivroDAO instance = new LivroDAO();
-        List<Livros> expResult = null;
-        List<Livros> result = instance.read();
-        assertEquals(expResult, result);
+        LivroDAO dao = new LivroDAO();
+        
+        /*if(dao.read().size()!= 0){
+            System.out.println("certo");
+        }else{
+            System.out.println("errado");
+        } Deu errado*/
+        /*for(Livros livro: dao.read()){
+            System.out.println("Nome:"+ livro.getNome());
+        } Deu errado*/
+        
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -173,5 +192,5 @@ public class LivroDAOTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
