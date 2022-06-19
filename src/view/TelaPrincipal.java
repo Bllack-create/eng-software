@@ -47,15 +47,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         LivroDAO livroDAO = new LivroDAO();
         int cont = 0;
         
-        for (Livros livro : livroDAO.read()) {
-            if(livro.getStatus()!= TRUE){
+        for (Livros livro : livroDAO.readIndisponivel()) {
+            //if(livro.getStatus()){
             modelo.addRow(new Object[]{
                 livro.getId(), livro.getNome(),
                 livro.getAutor(), livro.getAssunto(),
                 livro.getStatus()
             });
             cont++;
-            }
+            //}
         }
 
             String contador = String.valueOf(cont);

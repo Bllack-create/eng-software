@@ -4,6 +4,8 @@
  */
 package model.dao;
 
+import connection.ConnectionFactory;
+import java.sql.Connection;
 import model.bean.Usuarios;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,35 +42,48 @@ public class UsuarioDAOTest {
     @After
     public void tearDown() {
     }
-    /*
+    
+    public void testconexaoBanco(){
+        //Conexão ao banco de dados 
+        Connection conexao = ConnectionFactory.conector();
+          
+        assertNotNull(conexao);
+    }
+        
     @Test
     public void testCreate() {
+        testconexaoBanco();
     }
-    */
+    
     @Test
     public void testBuscaUsuarioPorEmail() {
+        testconexaoBanco();
         user = dao.buscaUsuarioPorEmail("");
         // verifica se não veio um objeto usuario
         assertNotNull(user);
         //fail("O método de buscar usuário por email retorna um objeto null");
         
-        assertEquals("tem cadastre de usuario de email com nome null no banco", "null", user.getEmail());
+        assertEquals("null", user.getEmail());
     }
-    /*
+    
     @Test
     public void testBuscaUsuarioPorEmaileCPF() {
+        testconexaoBanco();
     }
 
     @Test
     public void testUpdateSenha() {
+        testconexaoBanco();
     }
 
     @Test
     public void testUpdateSenhaSemInformar() {
+        testconexaoBanco();
     }
 
     @Test
     public void testBuscaTodosUsuarios() {
+        testconexaoBanco();
     }
-    */
+    
 }

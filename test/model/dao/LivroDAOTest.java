@@ -4,6 +4,10 @@
  */
 package model.dao;
 
+import connection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 import model.bean.Livros;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,44 +44,66 @@ public class LivroDAOTest {
     public void tearDown() {
     }
 
+    public void testconexaoBanco(){
+         //Conexão ao banco de dados 
+          Connection conexao = ConnectionFactory.conector();
+          
+          assertNotNull(conexao);
+    }
+    
     @Test
     public void testCreate() {
+        testconexaoBanco();
     }
 
     @Test
     public void testRead() {
+        testconexaoBanco();
     }
 
     @Test
     public void testReadIndisponivel() {
+        testconexaoBanco();
     }
 
     @Test
     public void testUpdate() {
+        testconexaoBanco();
     }
 
     @Test
     public void testDelete() {
+        testconexaoBanco();
     }
 
     @Test
     public void testBuscaLivros() {
+        testconexaoBanco();
     }
 
     @Test
     public void testAlteraInformacoesEmprestimo() {
+        testconexaoBanco();
     }
 
     @Test
     public void testFazEmprestimo() {
+        testconexaoBanco();
     }
 
     @Test
     public void testFazDevolucao() {
+        testconexaoBanco();
     }
 
     @Test
     public void testBuscaLivrosID() {
+        testconexaoBanco();
+        livro = dao.buscaLivrosID(1);
+        
+        assertNotNull(livro); // o objeto não é null
+        
+        assertTrue((livro.getId() != -1));
         
     }
     
