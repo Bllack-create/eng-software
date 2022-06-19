@@ -4,6 +4,7 @@
  */
 package model.dao;
 
+import model.bean.Usuarios;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +17,8 @@ import static org.junit.Assert.*;
  * @author esrae
  */
 public class UsuarioDAOTest {
+    public UsuarioDAO dao = new UsuarioDAO();
+    public Usuarios user = new Usuarios();
     
     public UsuarioDAOTest() {
     }
@@ -30,6 +33,8 @@ public class UsuarioDAOTest {
     
     @Before
     public void setUp() {
+        dao = new UsuarioDAO();
+        user = new Usuarios();
     }
     
     @After
@@ -40,10 +45,14 @@ public class UsuarioDAOTest {
     public void testCreate() {
     }
     */
-    
     @Test
     public void testBuscaUsuarioPorEmail() {
+        user = dao.buscaUsuarioPorEmail("");
+        // verifica se não veio um objeto usuario
+        assertNotNull(user);
+        //fail("O método de buscar usuário por email retorna um objeto null");
         
+        assertEquals("tem cadastre de usuario de email com nome null no banco", "null", user.getEmail());
     }
     /*
     @Test

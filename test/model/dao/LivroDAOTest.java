@@ -4,6 +4,7 @@
  */
 package model.dao;
 
+import model.bean.Livros;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,7 +17,8 @@ import static org.junit.Assert.*;
  * @author esrae
  */
 public class LivroDAOTest {
-    
+    LivroDAO dao = new LivroDAO();
+    Livros livro = new Livros();
     public LivroDAOTest() {
     }
     
@@ -30,6 +32,8 @@ public class LivroDAOTest {
     
     @Before
     public void setUp() {
+        dao = new LivroDAO();
+        livro = new Livros();
     }
     
     @After
@@ -74,6 +78,7 @@ public class LivroDAOTest {
 
     @Test
     public void testBuscaLivrosID() {
+        
     }
     
 }
